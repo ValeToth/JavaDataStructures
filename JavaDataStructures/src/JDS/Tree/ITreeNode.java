@@ -3,17 +3,13 @@
  */
 package JDS.Tree;
 
-import java.util.Collection;
-
 /**
  * base interface for TreeNodes
  * @author Jacopo_Wolf
  * @param <T> type of content
  */
-public interface ITreeNode<T> extends Collection< ITreeNode<T> >
+public interface ITreeNode<T>
 {
     T getContent();
     void setContent(T content);
-    
-    boolean hasNeighbors();
 }

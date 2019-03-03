@@ -18,7 +18,7 @@ the code style we're going to follow is for easy read, so it follows some simple
     code goes here
   }
   ```
-* put __I__ at the start of interfaces names
+* put an __I__ at the start of interfaces names
   ``` java
   public interface IExample
   ```
@@ -27,12 +27,12 @@ the code style we're going to follow is for easy read, so it follows some simple
   * __JDS__._patterns_
   * __JDS__._structures_ 
   
-  #### code of conduct :cop:
-  Be poilite and just use common sense, really. It's that simple.<br>
-  
-  
-  #### other specifics :bookmark_tabs:
-  * use european date format, *dd/mm/yyyy*
-  
-  -----
-  ###### orignally by [JacopoWolf](https://github.com/JacopoWolf), last edited 3/3/2019 by JacopoWolf
+#### code of conduct :cop:
+Be poilite and just use common sense, really. It's that simple.<br>
+
+
+#### other specifics :bookmark_tabs:
+* use european date format, *dd/mm/yyyy*
+
+-----
+###### orignally by [JacopoWolf](https://github.com/JacopoWolf), last edited 3/3/2019 by JacopoWolf

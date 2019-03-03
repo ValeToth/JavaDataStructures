@@ -52,6 +52,7 @@ public class Tree<T, Node extends ITreeNode<T> > implements ITree<Node>
     public Stream<Node> getAllNodesStream()
     {
         //TODO: implement
+        throw new UnsupportedOperationException();
     }
     
 }

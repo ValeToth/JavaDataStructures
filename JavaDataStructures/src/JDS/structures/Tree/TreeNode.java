@@ -1,7 +1,7 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.Tree;
+package JDS.structures.Tree;
 
 import java.util.*;
 

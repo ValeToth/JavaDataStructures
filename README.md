@@ -19,8 +19,13 @@ the code style we're going to follow is for easy read, so it follows some simple
   }
   ```
 * put an __I__ at the start of interfaces names
+
+* always create an interface before implementation
   ``` java
   public interface IExample
+  ```
+  ``` java
+  public class Example implements IExample
   ```
 * every structure or design has it's own package :package:, so put your code in the right one!<br>
   the main packages are: 

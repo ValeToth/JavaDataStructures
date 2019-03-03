@@ -3,6 +3,8 @@
  */
 package JDS.Tree;
 
+import java.util.Collection;
+
 /**
  * base interface for TreeNodes
  * @author Jacopo_Wolf
@@ -12,4 +14,9 @@ public interface ITreeNode<T>
 {
     T getContent();
     void setContent(T content);
+    
+    Collection< ? extends ITreeNode<T> > getSubNodes();
+    
+    boolean hasNeighbors();
+    
 }

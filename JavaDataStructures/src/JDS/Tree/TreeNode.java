@@ -9,8 +9,9 @@ import java.util.*;
  *
  * @author Jacopo_Wolf
  * @param <T>
+ * @param <Node>
  */
-public class TreeNode<T> implements ITreeNode<T>// Collection< ITreeNode<T> > should implement?
+public class TreeNode<T, Node extends TreeNode<T,Node> > implements ITreeNode<T>
 {
 
 /*
@@ -18,7 +19,7 @@ public class TreeNode<T> implements ITreeNode<T>// Collection< ITreeNode<T> > sh
 */
     
     private T content;
-    protected LinkedList<TreeNode<T>> subNodes;
+    protected LinkedList<Node> subNodes;
     
     @Override
     public T getContent()
@@ -30,6 +31,12 @@ public class TreeNode<T> implements ITreeNode<T>// Collection< ITreeNode<T> > sh
     public void setContent( T content )
     {
         this.content = content;
+    }
+    
+    @Override
+    public Collection<Node> getSubNodes()
+    {
+        return this.subNodes;
     }
 
     
@@ -47,6 +54,14 @@ public class TreeNode<T> implements ITreeNode<T>// Collection< ITreeNode<T> > sh
 /*
     methods
 */
+
+    
+
+    @Override
+    public boolean hasNeighbors()
+    {
+        return !this.subNodes.isEmpty();
+    }
 
     
 }

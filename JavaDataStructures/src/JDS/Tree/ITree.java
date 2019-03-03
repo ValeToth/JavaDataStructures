@@ -3,17 +3,19 @@
  */
 package JDS.Tree;
 
-import java.util.stream.BaseStream;
+import java.util.stream.Stream;
 
 /**
  *
  * @author Jacopo_Wolf
  * @param <Node> the type of node accepted by this tree
  */
-public interface ITree< Node extends ITreeNode > extends BaseStream< Node, ITree<Node> > 
+public interface ITree< Node extends ITreeNode >
 {
     
-    public Node getNode();
-    public void setNode( Node node );
+    public Node getRoot();
+    public void setRoot( Node node );
+    
+    public Stream< Node > getAllNodesStream();
     
 }

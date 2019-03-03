@@ -8,9 +8,9 @@ Now we're only at the beginning, but soon it's going to be a big repository for 
 #### Tools needed :wrench:
 Possibly NetBeans, wich this project has been created with.
 #### Level of knowledge :books:
-You must have knowledje of the Java language to begin with, and then some basic understanding of design patterns as a whole. If you like you can specify in one and develop it! 
+You must have knowledge of the Java language to begin with, and then some basic understanding of design patterns as a whole. If you like you can specialize in one and develop it! 
 #### Writing code :pencil:
-the code style we're going to follow is for easy read, so it follows some simple rules:
+the code style we're going to follow is for easy read, so there are some simple rules:
 * newline parentesis
   ``` java
   public void method (  )
@@ -40,4 +40,4 @@ Be poilite and just use common sense, really. It's that simple.<br>
 * use european date format, *dd/mm/yyyy*
 
 -----
-###### orignally by [JacopoWolf](https://github.com/JacopoWolf), last edited 3/3/2019 by JacopoWolf
+###### originally by [JacopoWolf](https://github.com/JacopoWolf), last edited 3/3/2019 by JacopoWolf

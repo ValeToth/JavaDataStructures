@@ -13,10 +13,10 @@ import java.util.function.Predicate;
  */
 public interface IComposite<T> extends IElement<T>
 {
-    public Collection< ? extends IElement > getSubElements();
+    public Collection< ? extends IElement<T> > getSubElements();
     
     
     public boolean containsRecursive( Predicate<IElement<T>> predicate );
     
-    public Collection< ? extends IElement > findRecursive(Predicate<IElement<T>> predicate );
+    public Collection< ? extends IElement<T> > findRecursive(Predicate<IElement<T>> predicate );
 }

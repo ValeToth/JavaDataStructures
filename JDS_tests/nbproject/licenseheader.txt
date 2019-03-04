@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
+<#if licenseLast??>
+${licenseLast}
+</#if>

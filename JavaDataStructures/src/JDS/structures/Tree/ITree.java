@@ -3,19 +3,20 @@
  */
 package JDS.structures.Tree;
 
-import java.util.stream.Stream;
+import java.util.Collection;
 
 /**
  *
  * @author Jacopo_Wolf
  * @param <Node> the type of node accepted by this tree
+ * @param <T>
  */
-public interface ITree< Node extends ITreeNode >
+public interface ITree< Node extends ITreeNode, T >
 {
     
     public Node getRoot();
     public void setRoot( Node node );
     
-    public Stream< Node > getAllNodesStream();
+    public Collection< ITreeNode<T> > getAllNodes();
     
 }

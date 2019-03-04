@@ -6,12 +6,12 @@ package JDS.structures.Tree;
 import java.util.*;
 
 /**
- *
+ *  rappresents a node in the tree structure with a content of type T
+ * 
  * @author Jacopo_Wolf
- * @param <T>
- * @param <Node>
+ * @param <T> the content of this Node
  */
-public class TreeNode<T, Node extends TreeNode<T,Node> > implements ITreeNode<T>
+public class TreeNode<T> implements ITreeNode<T>
 {
 
 /*
@@ -19,7 +19,7 @@ public class TreeNode<T, Node extends TreeNode<T,Node> > implements ITreeNode<T>
 */
     
     private T content;
-    protected LinkedList<Node> subNodes;
+    protected LinkedList<TreeNode<T>> subNodes;
     
     @Override
     public T getContent()
@@ -34,7 +34,7 @@ public class TreeNode<T, Node extends TreeNode<T,Node> > implements ITreeNode<T>
     }
     
     @Override
-    public Collection<Node> getSubNodes()
+    public Collection<TreeNode<T>> getSubNodes()
     {
         return this.subNodes;
     }
@@ -44,10 +44,15 @@ public class TreeNode<T, Node extends TreeNode<T,Node> > implements ITreeNode<T>
     constructors
 */
     
+    public TreeNode ( T content )
+    {
+        this.content = content;
+        this.subNodes = new LinkedList<>();
+    }
+    
     public TreeNode ()
     {
-        this.content = null;
-        this.subNodes = new LinkedList<>();
+        this(null);
     }
     
     

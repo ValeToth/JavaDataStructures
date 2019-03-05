@@ -34,6 +34,7 @@ the code style we're going to follow is for easy read, so there are some simple 
   
 #### code of conduct :cop:
 Be poilite and just use common sense, really. It's that simple.<br>
+You can read teìhe whole document [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CODE_OF_CONDUCT.md)
 
 
 #### other specifics :bookmark_tabs:

@@ -19,8 +19,7 @@ public interface IComposite<T> extends IElement<T>
     public boolean containsRecursive( Predicate<IElement<T>> predicate );
     
     public Collection< ? extends IElement<T> > findRecursive(Predicate<IElement<T>> predicate );
-    
-    
+   
     /**
      * recursively returns all sub elements of root
      * @param <A> the content of the elements
@@ -37,5 +36,5 @@ public interface IComposite<T> extends IElement<T>
                 IComposite.getAllRecursive( (IComposite<A>)el , out);
         }
     }
-    
+
 }

@@ -4,6 +4,7 @@
 This is a simple Java library for commonly used patterns and DataStructures<br>
 Now we're only at the beginning, but soon it's going to be a big repository for structures!
 <br>
+if you want to inform yourself on how to use the library go check [our Wiki](https://github.com/JacopoWolf/JavaDataStructures/wiki) :open_book:
 ## Contribute :computer:
 Contributing it's easy! 
 Go check out contributing guidelines [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CONTRIBUTING.md)

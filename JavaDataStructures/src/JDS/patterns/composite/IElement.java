@@ -13,5 +13,4 @@ public interface IElement<T>
     T getContent();
     void setContent(T content);
     
-    
 }

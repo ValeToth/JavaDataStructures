@@ -4,13 +4,14 @@
 This is a simple Java library for commonly used patterns and DataStructures<br>
 Now we're only at the beginning, but soon it's going to be a big repository for structures!
 <br>
+if you want to inform yourself on how to use the library go check [our Wiki](https://github.com/JacopoWolf/JavaDataStructures/wiki) :open_book:
 ## Contribute :computer:
-contributing it's easy! 
-go check out contributing guidilines [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CONTRIBUTING.md)
+Contributing it's easy! 
+Go check out contributing guidelines [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CONTRIBUTING.md)
   
 #### code of conduct :cop:
 Be poilite and just use common sense, really. It's that simple.<br>
-You can read teìhe whole document [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CODE_OF_CONDUCT.md)
+You can read the whole document [HERE](https://github.com/JacopoWolf/JavaDataStructures/blob/master/CODE_OF_CONDUCT.md)
 
 
 #### other specifics :bookmark_tabs:

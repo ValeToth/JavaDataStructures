@@ -10,7 +10,15 @@ package JDS.patterns.composite;
  */
 public interface IElement<T>
 {
+    /**
+     * 
+     * @return the content of this element
+     */
     T getContent();
-    void setContent(T content);
     
+    /**
+     * sets the content to the param
+     * @param content 
+     */
+    void setContent(T content);
 }

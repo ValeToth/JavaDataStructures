@@ -3,6 +3,7 @@
  */
 package JDS.structures.Tree;
 
+import JDS.patterns.composite.IComposite;
 import java.util.Collection;
 
 /**
@@ -10,13 +11,10 @@ import java.util.Collection;
  * @author Jacopo_Wolf
  * @param <T> type of content
  */
-public interface ITreeNode<T>
-{
-    T getContent();
-    void setContent(T content);
+public interface ITreeNode<T> extends IComposite<T>
+{    
+    @Override
+    public Collection<? extends ITreeNode<T>> getSubElements(); 
     
-    Collection< ? extends ITreeNode<T> > getSubNodes();
-    
-    boolean hasNeighbors();
-    
+    boolean hasNeighbors();  
 }

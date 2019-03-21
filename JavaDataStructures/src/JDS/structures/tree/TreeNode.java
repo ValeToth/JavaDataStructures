@@ -1,7 +1,7 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.Tree;
+package JDS.structures.tree;
 
 import JDS.patterns.composite.IComposite;
 import JDS.patterns.composite.IElement;
@@ -37,8 +37,12 @@ public class TreeNode<T> implements ITreeNode<T>
         this.content = content;
     }
     
+    @Override
+    public Collection<TreeNode<T>> getSubElements()
+    {
+        return this.subNodes;
+    }
     
-
     
 /*
     constructors
@@ -69,11 +73,7 @@ public class TreeNode<T> implements ITreeNode<T>
     }
 
     
-    @Override
-    public Collection<TreeNode<T>> getSubElements()
-    {
-        return this.subNodes;
-    }
+    
 
     @Override
     public boolean containsRecursive( Predicate<IElement> predicate )

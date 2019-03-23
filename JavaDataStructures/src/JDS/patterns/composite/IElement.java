@@ -4,7 +4,7 @@
 package JDS.patterns.composite;
 
 /**
- *
+ * basic composite element, having only a content propriety.
  * @author Jacopo_Wolf
  * @param <T>
  */

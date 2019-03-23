@@ -7,10 +7,18 @@ import JDS.patterns.composite.IElement;
 import java.util.*;
 import java.util.function.*;
 
-
+/**
+ * basic implementation for IGraphNode.
+ * @author Jacopo_Wolf
+ * @param <T> 
+ */
 public class GraphNode<T> implements IGraphNode<T>
 {
 
+    /*
+        variables
+    */
+    
     private T content;
     private Function<T, IGraphNode<T>> func;
     private ArrayList<IArch> connections;
@@ -41,23 +49,14 @@ public class GraphNode<T> implements IGraphNode<T>
         return this.connections;
     }
 
-    @Override
-    public final Collection<? extends IGraphNode<T>> getSubElements()
-    {
-        ArrayList<IGraphNode<T>> out = new ArrayList<>();
-        for ( IArch arch : this.connections )
-            out.add( arch.pointsTo() );
-        return out;
-    }
+    
 
+
+   
+    /*
+        constructurs
+    */
     
-    
-    
-    @Override
-    public void addGraphNode( IGraphNode<T> node )
-    {
-        this.connections.add( new Arch(node) );
-    }
     
     public GraphNode( IGraphNode<T>...connections )
     {
@@ -67,9 +66,25 @@ public class GraphNode<T> implements IGraphNode<T>
     }
 
     
+    /*
+        methods
+    */
+    
+    @Override
+    public final Collection<? extends IGraphNode<T>> getSubElements()
+    {
+        ArrayList<IGraphNode<T>> out = new ArrayList<>();
+        for ( IArch arch : this.connections )
+            out.add( arch.pointsTo() );
+        return out;
+    }
     
     
-    
+     @Override
+    public void addGraphNode( IGraphNode<T> node )
+    {
+        this.connections.add( new Arch(node) );
+    }
     
     
     @Override

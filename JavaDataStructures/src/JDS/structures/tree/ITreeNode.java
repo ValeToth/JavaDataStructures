@@ -13,8 +13,16 @@ import java.util.Collection;
  */
 public interface ITreeNode<T> extends IComposite<T>
 {    
+    /**
+     * 
+     * @return the subElements directly under this TreeNode
+     */
     @Override
     public Collection<? extends ITreeNode<T>> getSubElements(); 
     
+    /**
+     * 
+     * @return if this Node has neighbors.
+     */
     boolean hasNeighbors();  
 }

@@ -49,7 +49,10 @@ public class Tree< Node extends ITreeNode<T> , T > implements ITree<Node,T>
     methods
 */    
     
-    
+    /**
+     * encapsulates Tree.getAllSubNodes.
+     * @return a collection of all the TreeNodes in this tree.
+     */
     @Override
     public Collection<ITreeNode<T>> getAllNodes()
     {

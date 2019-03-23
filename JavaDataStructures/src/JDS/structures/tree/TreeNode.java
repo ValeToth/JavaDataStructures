@@ -1,9 +1,13 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.Tree;
+package JDS.structures.tree;
 
+import JDS.patterns.composite.IComposite;
+import JDS.patterns.composite.IElement;
 import java.util.*;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
 /**
  *  rappresents a node in the tree structure with a content of type T
@@ -34,11 +38,11 @@ public class TreeNode<T> implements ITreeNode<T>
     }
     
     @Override
-    public Collection<TreeNode<T>> getSubNodes()
+    public Collection<TreeNode<T>> getSubElements()
     {
         return this.subNodes;
     }
-
+    
     
 /*
     constructors
@@ -67,6 +71,29 @@ public class TreeNode<T> implements ITreeNode<T>
     {
         return !this.subNodes.isEmpty();
     }
+
+    
+    
+
+    @Override
+    public boolean containsRecursive( Predicate<IElement> predicate )
+    {
+        ArrayList<IElement> out = new  ArrayList<>();
+        IComposite.getAllRecursive(this, out);
+        return out.stream().anyMatch( predicate );
+    }
+
+    @Override
+    public Collection<TreeNode<T>> findRecursive( Predicate<IElement> predicate )
+    {
+        ArrayList<IElement> out = new  ArrayList<>();
+        IComposite.getAllRecursive(this, out);
+        ArrayList<TreeNode<T>> convOut = new ArrayList<>();
+        out.stream().filter(predicate).forEach( (el) -> convOut.add((TreeNode<T>)el) );
+        return convOut;
+    }
+
+
 
     
 }

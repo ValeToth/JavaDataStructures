@@ -13,34 +13,40 @@ import java.util.function.Function;
  * rappresents the node of a Graph
  * @author Jacopo_Wolf
  * @param <T>
+ * @param <A>
  */
-public interface IGraphNode<T> extends IComposite<T>
+public interface IGraphNode<T,A> extends IComposite<T>
 {
     /**
      * the operation this node will do when called
      * @return a connected node basing on function.
      */
-    public Function<T,IGraphNode<T>> function();
+    public Function<T,IGraphNode<T,A>> function();
     
     
     /**
      * 
      * @return the arches starting from this node
      */
-    public Collection<? extends IArch> getArches();
+    public Collection<? extends IArch<A>> getArches();
+    
+    
     
     /**
      * add an IGraphNode to this node, with default Arch parameters.
      * @param node 
      */
-    public void addGraphNode(IGraphNode<T> node);
-            
+    public void addGraphNode(IGraphNode<T,A> node);
+    
+    public void addGraphNode(IGraphNode<T,A> node, A archValue );
+    
+    
     /**
      * 
      * @return all the elements directly connected to this GraphNode.
      */
     @Override
-    public Collection<? extends IGraphNode<T>> getSubElements();
+    public Collection<? extends IGraphNode<T,A>> getSubElements();
     
     
     /**

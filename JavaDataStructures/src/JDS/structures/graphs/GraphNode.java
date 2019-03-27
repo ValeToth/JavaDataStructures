@@ -11,17 +11,18 @@ import java.util.function.*;
  * basic implementation for IGraphNode.
  * @author Jacopo_Wolf
  * @param <T> 
+ * @param <A> 
  */
-public class GraphNode<T> implements IGraphNode<T>
+public class GraphNode<T,A> implements IGraphNode<T,A>
 {
 
     /*
         variables
     */
     
-    private T content;
-    private Function<T, IGraphNode<T>> func;
-    private ArrayList<IArch> connections;
+    protected T content;
+    protected Function<T, IGraphNode<T,A>> func;
+    protected ArrayList<IArch<A>> connections = new ArrayList<>();
     
     
     /**
@@ -49,9 +50,18 @@ public class GraphNode<T> implements IGraphNode<T>
      * @return the code to execute when deciding the next node
      */
     @Override
-    public Function<T, IGraphNode<T>> function()
+    public Function<T, IGraphNode<T,A>> function()
     {
         return this.func;
+    }
+    
+    /**
+     * set the function of this node
+     * @param func 
+     */
+    public void setFunction( Function<T, IGraphNode<T,A>> func )
+    {
+        this.func = func;
     }
 
     /**
@@ -59,7 +69,7 @@ public class GraphNode<T> implements IGraphNode<T>
      * @return a list of the arches which start from this node
      */
     @Override
-    public Collection<? extends IArch> getArches()
+    public Collection<? extends IArch<A>> getArches()
     {
         return this.connections;
     }
@@ -73,12 +83,31 @@ public class GraphNode<T> implements IGraphNode<T>
     */
     
     /**
+     *  initializes a new Empty GraphNode
+     */
+    public GraphNode ()
+    {
+        
+    }
+    
+    /**
+     * initializes a new node and sets its content
+     * @param content 
+     */
+    public GraphNode( T content )
+    {
+        this.content = content;
+    }
+    
+    /**
      * initializes a new GraphNode
+     * @param content
      * @param connections the connection to generate on initialization
      */
-    public GraphNode( IGraphNode<T>...connections )
+    public GraphNode( T content, IGraphNode<T,A>...connections )
     {
-        for ( IGraphNode<T> node : connections)
+        this.content = content;
+        for ( IGraphNode<T,A> node : connections)
             this.connections.add( new Arch<>(null,node) );
         
     }
@@ -93,19 +122,32 @@ public class GraphNode<T> implements IGraphNode<T>
      * @param node the node to add an arch to
      */
     @Override
-    public void addGraphNode( IGraphNode<T> node )
+    public void addGraphNode( IGraphNode<T,A> node )
     {
         this.connections.add( new Arch(node) );
     }
     
     /**
-     * 
-     * @return all the elements reachable from this node
+     * add a connection with empty parameters to this Node
+     * @param node the node to add an arch to
+     * @param archValue default arch value
      */
     @Override
-    public final Collection<? extends IGraphNode<T>> getSubElements()
+    public void addGraphNode( IGraphNode<T, A> node, A archValue )
     {
-        ArrayList<IGraphNode<T>> out = new ArrayList<>();
+    }
+    
+    
+    
+    
+    /**
+     * 
+     * @return the elements directly connected to this node
+     */
+    @Override
+    public final Collection<? extends IGraphNode<T,A>> getSubElements()
+    {
+        ArrayList<IGraphNode<T,A>> out = new ArrayList<>();
         for ( IArch arch : this.connections )
             out.add( arch.pointsTo() );
         return out;
@@ -133,9 +175,7 @@ public class GraphNode<T> implements IGraphNode<T>
         ArrayList<IGraphNode> out = new ArrayList<>();
         IGraphNode.getAllGraphsRecursive(this).stream().filter(predicate).forEach( el -> out.add(el) );
         return out;
-    }
-    
-    
+    }    
     
     
 }

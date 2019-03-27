@@ -20,12 +20,20 @@ public class Tree< Node extends ITreeNode<T> , T > implements ITree<Node,T>
 */
     private Node root;
     
+    /**
+     * 
+     * @return the root node
+     */
     @Override
     public Node getRoot()
     {
         return this.root;
     }
 
+    /**
+     * sets the root node
+     * @param node the new root node
+     */
     @Override
     public void setRoot( Node node )
     {

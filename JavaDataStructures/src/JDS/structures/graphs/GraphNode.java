@@ -135,6 +135,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     @Override
     public void addGraphNode( IGraphNode<T, A> node, A archValue )
     {
+        this.connections.add( new Arch<>(archValue, node) );
     }
     
     
@@ -176,6 +177,14 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
         IGraphNode.getAllGraphsRecursive(this).stream().filter(predicate).forEach( el -> out.add(el) );
         return out;
     }    
+    
+
+    @Override
+    public String toString()
+    {
+        return "GraphNode [ " + this.content.toString() + ", " + this.connections.size() + " connections ]";
+    }
+    
     
     
 }

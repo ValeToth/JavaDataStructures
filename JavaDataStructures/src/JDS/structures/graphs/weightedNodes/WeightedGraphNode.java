@@ -1,7 +1,11 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs;
+package JDS.structures.graphs.weightedNodes;
+
+import JDS.structures.graphs.Arch;
+import JDS.structures.graphs.GraphNode;
+import JDS.structures.graphs.IGraphNode;
 
 /**
  *
@@ -20,9 +24,9 @@ public class WeightedGraphNode<T> extends GraphNode<T, Integer>
         super(content);
     }
     
-    public WeightedGraphNode( WeightedGraphNode<T>... connections )
+    public WeightedGraphNode( T content, WeightedGraphNode<T>... connections )
     {
-        super(null,connections);
+        super(content,connections);
     }
 
     
@@ -38,13 +42,6 @@ public class WeightedGraphNode<T> extends GraphNode<T, Integer>
     public void addGraphNode( IGraphNode<T, Integer> node )
     {
         this.connections.add( new Arch<>(Integer.MAX_VALUE, node) );
-    }
-
-    
-    public long weightToReach( WeightedGraphNode<T> destination )
-    {
-        // implement
-        throw new UnsupportedOperationException();
     }
     
     

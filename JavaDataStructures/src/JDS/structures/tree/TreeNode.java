@@ -6,7 +6,6 @@ package JDS.structures.tree;
 import JDS.patterns.composite.IComposite;
 import JDS.patterns.composite.IElement;
 import java.util.*;
-import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
 /**
@@ -86,11 +85,9 @@ public class TreeNode<T> implements ITreeNode<T>
     @Override
     public Collection<TreeNode<T>> findRecursive( Predicate<IElement> predicate )
     {
-        ArrayList<IElement> out = new  ArrayList<>();
+        ArrayList<TreeNode<T>> out = new  ArrayList<>();
         IComposite.getAllRecursive(this, out);
-        ArrayList<TreeNode<T>> convOut = new ArrayList<>();
-        out.stream().filter(predicate).forEach( (el) -> convOut.add((TreeNode<T>)el) );
-        return convOut;
+        return out;
     }
 
 

@@ -4,7 +4,6 @@
 package JDS.structures.graphs;
 
 import JDS.patterns.composite.IComposite;
-import JDS.patterns.composite.IElement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Function;
@@ -51,17 +50,14 @@ public interface IGraphNode<T,A> extends IComposite<T>
     
     /**
      * puts every reachable GraphNode in out
+     * @param <E>
      * @param root
      * @return  
      */
-    public static Collection<IGraphNode> getAllGraphsRecursive ( IGraphNode root )
+    public static <E extends IGraphNode> Collection<E> getAllGraphsRecursive ( E root )
     {
-        ArrayList<IElement> tmp = new ArrayList<>();
-        JDS.patterns.composite.IComposite.getAllRecursive(root, tmp );
-        
-        ArrayList<IGraphNode> out = new ArrayList<>();
-        tmp.forEach( el -> out.add((IGraphNode)el) );
-        
+        ArrayList<E> out = new ArrayList<>();
+        IComposite.getAllRecursive( root, out);        
         return out;
     }
     

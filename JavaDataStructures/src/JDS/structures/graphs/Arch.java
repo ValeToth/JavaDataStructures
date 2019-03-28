@@ -12,7 +12,7 @@ package JDS.structures.graphs;
 public class Arch<T> implements IArch<T>
 {
     private T data;
-            IGraphNode pointsto;
+    IGraphNode pointsto;
     
             
     /**
@@ -72,6 +72,15 @@ public class Arch<T> implements IArch<T>
         this.data = null;
         this.pointsto = null;
     }
+
+    
+    
+    @Override
+    public String toString()
+    {
+        return "Arch [ " + this.data.toString() + ", points to " + this.pointsto.toString() + " ]";
+    }
+    
     
     
     

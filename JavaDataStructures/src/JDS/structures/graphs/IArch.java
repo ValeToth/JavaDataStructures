@@ -21,6 +21,6 @@ public interface IArch<T>
      * 
      * @return the GraphNode this arch is pointing to
      */
-    public IGraphNode pointsTo ();
+    public IGraphNode pointsTo ( );
     
 }

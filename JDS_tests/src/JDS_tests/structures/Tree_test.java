@@ -5,7 +5,7 @@
 
 package JDS_tests.structures;
 
-import JDS.structures.Tree.*;
+import JDS.structures.tree.*;
 
 
 class Tree_test
@@ -18,9 +18,9 @@ class Tree_test
         TreeNode<String> rootnode = new TreeNode<>("rootNode"), node2;
         tree.setRoot(rootnode);
         
-        rootnode.getSubNodes().add( new TreeNode<>("subnode1") );
-        rootnode.getSubNodes().add( node2 = new TreeNode<>("subnode2") );
-        node2.getSubNodes().add( new TreeNode<>("subSubNode1") );
+        rootnode.getSubElements().add( new TreeNode<>("subnode1") );
+        rootnode.getSubElements().add( node2 = new TreeNode<>("subnode2") );
+        node2.getSubElements().add( new TreeNode<>("subSubNode1") );
         
         for ( ITreeNode<String> node : tree.getAllNodes() ) 
         {

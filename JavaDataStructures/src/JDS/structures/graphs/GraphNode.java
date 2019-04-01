@@ -185,6 +185,4 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
         return "GraphNode [ " + this.content.toString() + ", " + this.connections.size() + " connections ]";
     }
     
-    
-    
 }

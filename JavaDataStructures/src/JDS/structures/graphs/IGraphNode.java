@@ -49,7 +49,7 @@ public interface IGraphNode<T,A> extends IComposite<T>
     
     
     /**
-     * puts every reachable GraphNode in out
+     * puts every reachable GraphNode from root in out
      * @param <E>
      * @param root
      * @return  

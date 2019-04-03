@@ -12,7 +12,7 @@ import java.util.function.Function;
  * @param <E>
  * @param <A>
  */
-public class Path<E,A> extends ArrayList<IGraphNode<E,A>>
+public class Path<E,A> extends LinkedList<IGraphNode<E,A>>
 {
     /*
         variables
@@ -35,17 +35,16 @@ public class Path<E,A> extends ArrayList<IGraphNode<E,A>>
         return calculateArchWeight;
     }
 
-    public void setCalculateArchWeight( Function<A, Integer> calculateArchWeight )
-    {
-        this.calculateArchWeight = calculateArchWeight;
-    }
 
     
-    
     /*
-        constructor
+        constructors
     */
     
+    public Path()
+    {
+        this.calculateArchWeight = ( A a ) -> 1 ;
+    }
     
     public Path( Function<A, Integer> calculateArchWeight )
     {
@@ -57,24 +56,60 @@ public class Path<E,A> extends ArrayList<IGraphNode<E,A>>
         methods
     */
     
+    
     /**
      * finds the shortest path between source and destination node
      * @param source
      * @param destination
-     * @return 
-     * @throws JDS.structures.graphs.PathNotFoundException 
+     * @return
+     * @throws PathNotFoundException 
      */
-    public Path<E,A> shortestPath( IGraphNode<E,A> source, IGraphNode<E,A> destination ) throws PathNotFoundException
+    public Path<E,A> shortestPath ( IGraphNode<E,A> source, IGraphNode<E,A> destination ) throws PathNotFoundException
+    {        
+        //checks if the destination is reachable
+        if ( !source.containsRecursive((el) -> el.equals(destination) ))
+            throw new PathNotFoundException(source, destination, "There's no path between source and destination nodes!");
+        
+        HashMap<IGraphNode,IGraphNode> precedentMap = new HashMap<>();
+        Map<IGraphNode<E,A>,Integer> weightMap = generateWeightMap(source, precedentMap );
+        
+        // updates this path object
+        IGraphNode currentNode = destination;
+        while ( currentNode != source )
+        {
+            this.add(0, currentNode);
+            currentNode = precedentMap.get(currentNode);
+        }
+        this.add(0, source);
+        
+        return this;
+    }
+    
+    
+    
+    
+    /**
+     * calculates the weight to reach every node from source, with the destination 
+     * @param source
+     * @return 
+     */
+    public Map<IGraphNode<E,A>,Integer> generateWeightMap( IGraphNode<E,A> source )
+    {
+        return generateWeightMap(source, new HashMap<>() );
+    }
+    
+    /**
+     * calculates the weight to reach every node from source, with the destination 
+     * @param source
+     * @param OUT_previousToMap
+     * @return 
+     */
+    public Map<IGraphNode<E,A>,Integer> generateWeightMap( IGraphNode<E,A> source, Map<IGraphNode,IGraphNode> OUT_previousToMap  )
     {
       
         //a list of all reachable graphnodes
         Collection<IGraphNode> reachableGraphNodes = IGraphNode.getAllGraphsRecursive(source);
-        
-        //checks if the operation is doable in te first place
-        if ( !reachableGraphNodes.contains(destination) )
-            throw new PathNotFoundException(source, destination, "There's no path between the source and destination nodes!");
-        
-        
+           
         
         //maps every reachable node and the weight to reach it.
         LinkedHashMap<IGraphNode<E,A>, Integer> weightMap = new LinkedHashMap<>();
@@ -89,32 +124,42 @@ public class Path<E,A> extends ArrayList<IGraphNode<E,A>>
         //finds shortest path
         IGraphNode<E,A> currentNode;
         
-        while ( reachableGraphNodes.size() > 0 )
+        // while there are nodes to check
+        while ( !reachableGraphNodes.isEmpty() )
         {
-            // the node with the minimum weight in 
+            // the node with the minimum weight in the unchecked nodes
             currentNode = reachableGraphNodes.stream().min
             ( 
                 (a, b) -> Integer.compare( weightMap.get(a) , weightMap.get(b) )
             ).get();
-                        
+            
+            //for every connection in current node
             for ( IArch<A> arch : currentNode.getArches() )
             {
+                //if it has alraedy been checked, skip checking ir again.
                 if ( !reachableGraphNodes.contains(arch.pointsTo()) )
                     continue;
                 
+                // total distance from source
                 int dist = weightMap.get(currentNode) + calculateArchWeight.apply(arch.getData());
+                
                 if ( dist < weightMap.get( arch.pointsTo() ))
                 {
-                    weightMap.put(arch.pointsTo(), dist );
+                    weightMap.put( arch.pointsTo(), dist );
+                
+                    //updates previus graphnode tracking map
+                    OUT_previousToMap.put(arch.pointsTo(), currentNode);
                 }
+                
             }
             
+            //removes current node from nodes to check
             reachableGraphNodes.remove(currentNode);
                         
         }
         
         
-        return this;
+        return weightMap;
 
     }
     

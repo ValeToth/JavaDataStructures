@@ -70,23 +70,47 @@ public class Path<E,A> extends ArrayList<IGraphNode<E,A>>
         //a list of all reachable graphnodes
         Collection<IGraphNode> reachableGraphNodes = IGraphNode.getAllGraphsRecursive(source);
         
+        //checks if the operation is doable in te first place
         if ( !reachableGraphNodes.contains(destination) )
             throw new PathNotFoundException(source, destination, "There's no path between the source and destination nodes!");
         
         
         
         //maps every reachable node and the weight to reach it.
-        LinkedHashMap<IGraphNode<E,A>, Integer>     weightMap = new LinkedHashMap<>(),
-                                                    definitiveMap = new LinkedHashMap<>();
+        LinkedHashMap<IGraphNode<E,A>, Integer> weightMap = new LinkedHashMap<>();
+        for ( IGraphNode node : reachableGraphNodes )
+            weightMap.put(node, defaultWeight);
+        
+        //inits source
         weightMap.put(source, 0);
-        
-        
+        reachableGraphNodes.add(source);
         
         
         //finds shortest path
+        IGraphNode<E,A> currentNode;
+        
         while ( reachableGraphNodes.size() > 0 )
         {
-             //complete
+            // the node with the minimum weight in 
+            currentNode = reachableGraphNodes.stream().min
+            ( 
+                (a, b) -> Integer.compare( weightMap.get(a) , weightMap.get(b) )
+            ).get();
+                        
+            for ( IArch<A> arch : currentNode.getArches() )
+            {
+                if ( !reachableGraphNodes.contains(arch.pointsTo()) )
+                    continue;
+                
+                int dist = weightMap.get(currentNode) + calculateArchWeight.apply(arch.getData());
+                if ( dist < weightMap.get( arch.pointsTo() ))
+                {
+                    weightMap.put(arch.pointsTo(), dist );
+                }
+            }
+            
+            reachableGraphNodes.remove(currentNode);
+                        
         }
         
         

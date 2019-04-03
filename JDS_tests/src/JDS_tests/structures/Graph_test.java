@@ -4,8 +4,6 @@
 package JDS_tests.structures;
 
 import JDS.structures.graphs.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -13,17 +13,18 @@ import JDS.structures.graphs.weightedNodes.WeightedPath;
 public class Graph_test
 {
     
-    public static <E,A> void printPath ( Path<E,A> path ) 
+    public static <N extends IGraphNode<E,A>,E,A> void printPath ( Path<A,N> path ) 
     {
         for ( IGraphNode node : path )
             {
-                System.out.print(node.getContent() + "->");
+                System.out.print( node.getContent() + "->");
             }
             System.out.println("\b\b");
     }
     
     public static void main( String[] args )
     {
+        
         IGraphNode<String,Integer>
                 a   = new GraphNode<>("A"),
                 b   = new GraphNode<>("B"),
@@ -43,9 +44,23 @@ public class Graph_test
         try
         {
         
-            printPath( new Path<String,Integer>().shortestPath(a, f) );
-            printPath( new WeightedPath<String>().shortestPath(a, f) );
-            printPath( new Path<String,Integer>().shortestPath(f, a) );
+            
+            long startTime = System.currentTimeMillis();
+            // A->F
+            printPath(  new Path< Integer, IGraphNode<String,Integer> > ().shortestPath(a, f)  );
+            
+            System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
+            
+            
+            
+            startTime = System.currentTimeMillis();
+            
+            // A->B->C->D->E->F
+            printPath(  new WeightedPath<IGraphNode<String, Integer>>().shortestPath(a, f) );
+            
+            System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
+            
+
         }
         catch( PathNotFoundException ex )
         {

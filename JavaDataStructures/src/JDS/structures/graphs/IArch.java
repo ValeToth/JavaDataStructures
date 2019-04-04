@@ -19,8 +19,9 @@ public interface IArch<T>
     
     /**
      * 
-     * @return the GraphNode this arch is pointing to
+     * @param <E> type of graphnode
+     * @return the GraphNode this arch points to
      */
-    public IGraphNode pointsTo ( );
+    public < E extends IGraphNode > E pointsTo ( );
     
 }

@@ -13,7 +13,7 @@ import JDS.structures.graphs.weightedNodes.WeightedPath;
 public class Graph_test
 {
     
-    public static <N extends IGraphNode<E,A>,E,A> void printPath ( Path<A,N> path ) 
+    public static <A> void printPath ( Path<A> path ) 
     {
         for ( IGraphNode node : path )
             {
@@ -33,6 +33,7 @@ public class Graph_test
                 e   = new GraphNode<>("E"),
                 f   = new GraphNode<>("F");
         
+        
         a.addGraphNode(e, 10);  a.addGraphNode(b,3);    a.addGraphNode(f,10);
         b.addGraphNode(d, 3);   b.addGraphNode(c,1);
         c.addGraphNode(d, 1);
@@ -47,7 +48,7 @@ public class Graph_test
             
             long startTime = System.currentTimeMillis();
             // A->F
-            printPath(  new Path< Integer, IGraphNode<String,Integer> > ().shortestPath(a, f)  );
+            printPath(  new Path().shortestPath(a, f)  );
             
             System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
             
@@ -56,7 +57,7 @@ public class Graph_test
             startTime = System.currentTimeMillis();
             
             // A->B->C->D->E->F
-            printPath(  new WeightedPath<IGraphNode<String, Integer>>().shortestPath(a, f) );
+            printPath(  new WeightedPath().shortestPath(a, f) );
             
             System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
             

@@ -8,9 +8,8 @@ import JDS.structures.graphs.*;
 /**
  *
  * @author JacopoWolf
- * @param <N>
  */
-public class WeightedPath< N extends IGraphNode<?, Integer> > extends Path< Integer , N >
+public class WeightedPath extends Path< Integer >
 {
 
     public WeightedPath(  )

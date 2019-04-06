@@ -11,8 +11,10 @@ package JDS.structures.graphs;
  */
 public class Arch<T> implements IArch<T>
 {
-    private T data;
-    IGraphNode pointsto;
+    
+    protected T data;
+    protected IGraphNode pointsto;
+
     
             
     /**
@@ -28,7 +30,7 @@ public class Arch<T> implements IArch<T>
      * sets the data contained in this arch
      * @param data new data
      */
-    public void setData( T data)
+    public void setData( T data )
     {
         this.data = data;
     }

@@ -23,11 +23,6 @@ public class WeightedGraphNode<T> extends GraphNode<T, Integer>
     {
         super(content);
     }
-    
-    public WeightedGraphNode( T content, WeightedGraphNode<T>... connections )
-    {
-        super(content,connections);
-    }
 
     
     

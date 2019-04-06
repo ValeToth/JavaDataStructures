@@ -6,7 +6,6 @@ package JDS.structures.graphs;
 import JDS.patterns.composite.IComposite;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.function.Function;
 
 /**
  * rappresents the node of a Graph
@@ -16,13 +15,6 @@ import java.util.function.Function;
  */
 public interface IGraphNode<T,A> extends IComposite<T>
 {
-    /**
-     * the operation this node will do when called
-     * @return a connected node basing on function.
-     */
-    public Function<T,IGraphNode<T,A>> function();
-    
-    
     /**
      * 
      * @return the arches starting from this node
@@ -49,12 +41,12 @@ public interface IGraphNode<T,A> extends IComposite<T>
     
     
     /**
-     * puts every reachable GraphNode in out
-     * @param <E>
-     * @param root
-     * @return  
+     * finds every reachable graphnode from the starting node root
+     * @param <E> type of root
+     * @param root the root node
+     * @return  all the reachable graphnodes from root
      */
-    public static <E extends IGraphNode> Collection<E> getAllGraphsRecursive ( E root )
+    public static <E extends IGraphNode> Collection<E> reachableGraphnodes ( E root )
     {
         ArrayList<E> out = new ArrayList<>();
         IComposite.getAllRecursive( root, out);        

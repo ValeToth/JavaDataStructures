@@ -5,7 +5,7 @@ package JDS.structures.graphs;
 
 import JDS.patterns.composite.IElement;
 import java.util.*;
-import java.util.function.*;
+import java.util.function.Predicate;
 
 /**
  * basic implementation for IGraphNode.
@@ -21,7 +21,6 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     */
     
     protected T content;
-    protected Function<T, IGraphNode<T,A>> func;
     protected ArrayList<IArch<A>> connections = new ArrayList<>();
     
     
@@ -45,24 +44,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
         this.content = content;
     }
     
-    /**
-     * 
-     * @return the code to execute when deciding the next node
-     */
-    @Override
-    public Function<T, IGraphNode<T,A>> function()
-    {
-        return this.func;
-    }
-    
-    /**
-     * set the function of this node
-     * @param func 
-     */
-    public void setFunction( Function<T, IGraphNode<T,A>> func )
-    {
-        this.func = func;
-    }
+
 
     /**
      * 
@@ -89,6 +71,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     {
         
     }
+
     
     /**
      * initializes a new node and sets its content
@@ -97,19 +80,6 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     public GraphNode( T content )
     {
         this.content = content;
-    }
-    
-    /**
-     * initializes a new GraphNode
-     * @param content
-     * @param connections the connection to generate on initialization
-     */
-    public GraphNode( T content, IGraphNode<T,A>...connections )
-    {
-        this.content = content;
-        for ( IGraphNode<T,A> node : connections)
-            this.connections.add( new Arch<>(null,node) );
-        
     }
 
     
@@ -162,7 +132,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     @Override
     public boolean containsRecursive( Predicate<IElement> predicate )
     {
-        return IGraphNode.getAllGraphsRecursive( this ).stream().anyMatch(predicate);
+        return IGraphNode.reachableGraphnodes( this ).stream().anyMatch(predicate);
     }
 
     /**
@@ -174,7 +144,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     public Collection<IGraphNode> findRecursive( Predicate<IElement> predicate )
     {
         ArrayList<IGraphNode> out = new ArrayList<>();
-        IGraphNode.getAllGraphsRecursive(this).stream().filter(predicate).forEach( el -> out.add(el) );
+        IGraphNode.reachableGraphnodes(this).stream().filter(predicate).forEach( el -> out.add(el) );
         return out;
     }    
     
@@ -184,7 +154,5 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     {
         return "GraphNode [ " + this.content.toString() + ", " + this.connections.size() + " connections ]";
     }
-    
-    
     
 }

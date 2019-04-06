@@ -22,7 +22,7 @@ public interface IArch<T>
      * @param <E> type of graphnode
      * @return the GraphNode this arch points to
      */
-    public < E extends IGraphNode > E pointsTo ( );
+    public < E extends IGraphNode<?,T> > E pointsTo ( );
 
     
 }

@@ -80,7 +80,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     public GraphNode( T content )
     {
         this.content = content;
-    
+    }
 
     
     /*

@@ -14,7 +14,7 @@ import java.util.Collection;
  * @param <A>
  */
 public interface IGraphNode<T,A> extends IComposite<T>
-
+{
     /**
      * 
      * @return the arches starting from this node

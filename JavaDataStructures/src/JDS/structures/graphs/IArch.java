@@ -23,5 +23,6 @@ public interface IArch<T>
      * @return the GraphNode this arch points to
      */
     public < E extends IGraphNode > E pointsTo ( );
+
     
 }

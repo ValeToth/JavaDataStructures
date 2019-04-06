@@ -14,6 +14,7 @@ public class Arch<T> implements IArch<T>
     
     private T data;
     private IGraphNode pointsto;
+
     
             
     /**

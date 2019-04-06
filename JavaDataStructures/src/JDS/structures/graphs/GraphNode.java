@@ -45,6 +45,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     }
     
 
+
     /**
      * 
      * @return a list of the arches which start from this node
@@ -70,6 +71,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     {
         
     }
+
     
     /**
      * initializes a new node and sets its content
@@ -78,20 +80,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     public GraphNode( T content )
     {
         this.content = content;
-    }
     
-    /**
-     * initializes a new GraphNode
-     * @param content
-     * @param connections the connection to generate on initialization
-     */
-    public GraphNode( T content, IGraphNode<T,A>...connections )
-    {
-        this.content = content;
-        for ( IGraphNode<T,A> node : connections)
-            this.connections.add( new Arch<>(null,node) );
-        
-    }
 
     
     /*

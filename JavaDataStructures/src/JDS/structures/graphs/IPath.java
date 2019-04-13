@@ -18,7 +18,18 @@ interface IPath<A>
      * 
      * @return the function called to calculate weight of every arch between nodes
      */
-    Function<A,Integer> getCalculateArchWeight();
+    public Function<A,Integer> getCalculateArchWeight();
+    /**
+     * 
+     * @return the source node of this Path object
+     */
+    public IGraphNode<?,A> getSourceNode();
+    
+    /**
+     * 
+     * @return this Path's weight map
+     */
+    public Map<IGraphNode<?,A>,Integer> getWeightMap();
     
     /**
      * finds the shortest path between source and destination node
@@ -27,13 +38,16 @@ interface IPath<A>
      * @return
      * @throws PathNotFoundException 
      */
-    IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
+    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
     
     /**
-     * generates weight map of every reachable source Graphnode
+     * generates weight map of every reachable Graphnode from source and returns it.
      * @param source
      * @return 
      */
-    public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source);
+    public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source );
+    
+    
+    
     
 }

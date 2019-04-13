@@ -3,7 +3,10 @@
  */
 package JDS_tests.structures;
 
-import JDS.structures.graphs.*;
+import JDS.structures.graphs.GraphNode;
+import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.Path;
+import JDS.structures.graphs.PathNotFoundException;
 import JDS.structures.graphs.weightedNodes.WeightedPath;
 
 /**
@@ -58,6 +61,7 @@ public class Graph_test
             
             // A->B->C->D->E->F
             printPath(  new WeightedPath().shortestPath(a, f) );
+            
             
             System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
             

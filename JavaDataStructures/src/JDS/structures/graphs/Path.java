@@ -3,7 +3,11 @@
  */
 package JDS.structures.graphs;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -18,6 +22,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     */
     
     protected Function<A,Integer> calculateArchWeight;
+    private HashMap<IGraphNode<?,A>,Integer> weightMap;
     
 
     @Override 
@@ -49,6 +54,18 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     {
         this.calculateArchWeight = calculateArchWeight;
     }
+
+    @Override
+    public IGraphNode<?, A> getSourceNode()
+    {
+        return this.getFirst();
+    }
+
+    @Override
+    public Map<IGraphNode<?, A>, Integer> getWeightMap()
+    {
+        return this.weightMap;
+    }
     
     
     
@@ -72,6 +89,8 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         if ( !source.containsRecursive((el) -> el.equals(destination) ))
             throw new PathNotFoundException(source, destination, "There's no path between source and destination nodes!");
         
+        this.clear();
+        
         
         HashMap<IGraphNode<?,A>,IGraphNode<?,A>> precedentMap = new HashMap<>();
         
@@ -93,14 +112,15 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     
     
     /**
-     * calculates the weight to reach every node from source, with the destination 
+     * calculates the weight to reach every node from source
      * @param source
      * @return 
      */
     @Override 
     public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source )
     {
-        return generateWeightMap( source, new HashMap<>() );
+        generateWeightMap( source, new HashMap<>() );
+        return this.weightMap;
     }
     
     
@@ -108,17 +128,16 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
      * calculates the weight to reach every node from source, with the destination 
      * @param source
      * @param reversePathMap
-     * @return 
      */
-    protected Map<IGraphNode<?,A>,Integer> generateWeightMap ( IGraphNode<?,A> source, Map<IGraphNode<?,A>,IGraphNode<?,A>> reversePathMap )
+    protected void generateWeightMap ( IGraphNode<?,A> source, Map<IGraphNode<?,A>,IGraphNode<?,A>> reversePathMap )
     {
       
         //a list of all reachable graphnodes
-        Collection<IGraphNode<?,A>> reachableGraphNodes = IGraphNode.reachableGraphnodes(source);
+        LinkedList<IGraphNode<?,A>> reachableGraphNodes = new LinkedList<>( IGraphNode.reachableGraphnodes(source) );
            
         
         //maps every reachable node and the weight to reach it.
-        LinkedHashMap<IGraphNode<?,A>, Integer> weightMap = new LinkedHashMap<>();
+        this.weightMap = new HashMap<>();
         
         for ( IGraphNode<?,A> node : reachableGraphNodes )
             weightMap.put(node, Integer.MAX_VALUE );
@@ -169,8 +188,6 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
             reachableGraphNodes.remove(currentNode);
                         
         }
-        
-        return weightMap;
     }
         
 }

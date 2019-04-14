@@ -3,12 +3,8 @@
  */
 package JDS.structures.graphs;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.function.Function;
+import java.util.*;
+import java.util.function.*;
 
 /**
  * rappresents a path between two connected Graphnodes
@@ -86,7 +82,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     public Path<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException
     {
         //checks if the destination is reachable
-        if ( !source.containsRecursive((el) -> el.equals(destination) ))
+        if ( source.parallelStream().noneMatch( e -> e.equals(destination) ) )
             throw new PathNotFoundException(source, destination, "There's no path between source and destination nodes!");
         
         this.clear();
@@ -155,7 +151,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         {
             // the node with the minimum weight in the unchecked nodes
             currentNode =
-                reachableGraphNodes.stream()
+                reachableGraphNodes.parallelStream()
                 .min( (a, b) -> Integer.compare( weightMap.get(a) , weightMap.get(b) ))
                 .get();
                 

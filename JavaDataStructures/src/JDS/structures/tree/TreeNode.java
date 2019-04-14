@@ -3,10 +3,9 @@
  */
 package JDS.structures.tree;
 
-import JDS.patterns.composite.IComposite;
-import JDS.patterns.composite.IElement;
+import JDS.patterns.composite.*;
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.stream.*;
 
 /**
  *  rappresents a node in the tree structure with a content of type T
@@ -73,24 +72,31 @@ public class TreeNode<T> implements ITreeNode<T>
 
     
     
-
     @Override
-    public boolean containsRecursive( Predicate<IElement> predicate )
+    public TreeNodeIterator iterator()
     {
-        ArrayList<IElement> out = new  ArrayList<>();
-        IComposite.getAllRecursive(this, out);
-        return out.stream().anyMatch( predicate );
+        return new TreeNodeIterator(this);
     }
-
-    @Override
-    public Collection<TreeNode<T>> findRecursive( Predicate<IElement> predicate )
-    {
-        ArrayList<TreeNode<T>> out = new  ArrayList<>();
-        IComposite.getAllRecursive(this, out);
-        return out;
-    }
-
-
 
     
+
+    @Override
+    public Stream<TreeNode<T>> stream()
+    {
+        ArrayList<TreeNode<T>> out = new ArrayList<>();
+        IComposite.getAllRecursive(this, out, false);
+        return out.stream();
+    }
+    
+    @Override
+    public Stream<? extends IElement> parallelStream()
+    {
+        ArrayList<TreeNode<T>> out = new ArrayList<>();
+        IComposite.getAllRecursive(this, out, false);
+        return out.parallelStream();
+    }
+    
+    
+    
+   
 }

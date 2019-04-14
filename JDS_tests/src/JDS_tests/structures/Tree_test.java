@@ -5,6 +5,7 @@
 
 package JDS_tests.structures;
 
+import JDS.structures.tree.ITreeNode;
 import JDS.structures.tree.*;
 
 

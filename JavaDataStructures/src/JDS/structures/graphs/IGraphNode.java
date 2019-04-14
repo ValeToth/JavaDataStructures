@@ -3,11 +3,11 @@
  */
 package JDS.structures.graphs;
 
-import JDS.patterns.composite.IComposite;
-import java.util.ArrayList;
-import java.util.Collection;
+import JDS.patterns.composite.*;
+import java.util.*;
 
 /**
+ * 
  * rappresents the node of a Graph
  * @author Jacopo_Wolf
  * @param <T>

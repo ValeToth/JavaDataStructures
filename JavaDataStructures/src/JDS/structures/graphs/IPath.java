@@ -3,8 +3,8 @@
  */
 package JDS.structures.graphs;
 
-import java.util.Map;
-import java.util.function.Function;
+import java.util.*;
+import java.util.function.*;
 
 
 /**

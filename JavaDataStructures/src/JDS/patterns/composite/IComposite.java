@@ -16,24 +16,31 @@ public interface IComposite<T> extends IElement<T>, Iterable< IElement >
 {
     /**
      * 
-     * @return the elements in this Composite
+     * @return the elements under this Composite
      */
     public Collection< ? extends IElement > getSubElements();
 
     /**
-     * 
-     * @return 
+     * @return in iterator which'll iterate through every recursively reachable element
+     * from this instance
      */
     @Override
     public ICompositeIterator iterator();
     
     /**
      * 
-     * @return 
+     * @return a stream of every recursively reachable elements from this instance
      */
     public Stream<? extends IElement> stream();
     
+    /**
+     * 
+     * @return a parallelStream of every recursively reachable elements from this instance
+     */
+    
     public Stream<? extends IElement> parallelStream();
+    
+    
     
     
     /*

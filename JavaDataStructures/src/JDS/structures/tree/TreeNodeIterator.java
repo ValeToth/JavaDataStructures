@@ -19,6 +19,10 @@ public final class TreeNodeIterator<T> implements ICompositeIterator<ITreeNode<T
     private Iterator<ITreeNode<T>> iterator;
 
     
+    /**
+     * new instance of TreeNodeIterator
+     * @param sourceTreeNode 
+     */
     public TreeNodeIterator( ITreeNode<T> sourceTreeNode )
     {
         LinkedList<ITreeNode<T>> allTreeNodes = new LinkedList<>();

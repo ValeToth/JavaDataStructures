@@ -143,7 +143,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     @Override
     public Stream<GraphNode<T,A>> parallelStream()
     {
-        return IGraphNode.reachableGraphnodes(this).stream();
+        return IGraphNode.reachableGraphnodes(this).parallelStream();
     }
     
     

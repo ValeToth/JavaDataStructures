@@ -19,6 +19,10 @@ public final class GraphNodeIterator< G extends IGraphNode> implements IComposit
     private Iterator<G> iterator;
 
     
+    /**
+     * new instance of GraphNodeIterator starting from the specified Node
+     * @param sourceTreeNode 
+     */
     public GraphNodeIterator( G sourceTreeNode )
     {
         LinkedList<G> reachableNodes = new LinkedList<>();

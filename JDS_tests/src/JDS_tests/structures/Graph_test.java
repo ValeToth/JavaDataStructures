@@ -22,7 +22,8 @@ public class Graph_test
     }
     
     public static void main( String[] args )
-    {        
+    {
+        
         GraphNode<String,Integer>
                 a   = new GraphNode<>("A"),
                 b   = new GraphNode<>("B"),

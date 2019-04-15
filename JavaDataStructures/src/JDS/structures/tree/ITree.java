@@ -3,7 +3,7 @@
  */
 package JDS.structures.tree;
 
-import java.util.Collection;
+import java.util.*;
 
 /**
  *
@@ -13,10 +13,24 @@ import java.util.Collection;
  */
 public interface ITree< Node extends ITreeNode, T >
 {
-    
+ 
+    /**
+     * 
+     * @return the root node
+     */
     public Node getRoot();
+    
+    /**
+     * sets the root node
+     * @param node the new root node
+     */
     public void setRoot( Node node );
     
+    
+    /**
+     * 
+     * @return evey ITreeNode in this Tree
+     */
     public Collection< ITreeNode<T> > getAllNodes();
     
 }

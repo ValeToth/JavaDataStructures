@@ -21,20 +21,35 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     private HashMap<IGraphNode<?,A>,Integer> weightMap;
     
 
+    /**
+     * 
+     * @return the function used to calculate the weight of every arch
+     */
     @Override 
     public Function<A, Integer> getCalculateArchWeight()
     {
         return calculateArchWeight;
-    }
+    }  
     
-    public <E,G extends IGraphNode<E,A>> Collection<G> convertToCollection()
+    /**
+     * 
+     * @return the source node ( o starting node ) of this path
+     */
+    @Override
+    public IGraphNode<?, A> getSourceNode()
     {
-        Collection<G> out = new ArrayList<>();
-        this.forEach( (e) -> out.add((G)e) );
-        return out;
+        return this.getFirst();
     }
 
-    
+    /**
+     * 
+     * @return a Map containing a reference of every reachable graphnode and the total weight to reach it
+     */
+    @Override
+    public Map<IGraphNode<?, A>, Integer> getWeightMap()
+    {
+        return this.weightMap;
+    }
     
     
     /*
@@ -51,17 +66,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         this.calculateArchWeight = calculateArchWeight;
     }
 
-    @Override
-    public IGraphNode<?, A> getSourceNode()
-    {
-        return this.getFirst();
-    }
-
-    @Override
-    public Map<IGraphNode<?, A>, Integer> getWeightMap()
-    {
-        return this.weightMap;
-    }
+    
     
     
     

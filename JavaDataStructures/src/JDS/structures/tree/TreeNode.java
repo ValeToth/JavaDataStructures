@@ -97,9 +97,9 @@ public class TreeNode<T> implements ITreeNode<T>
      * @return the iterator of every TreeNode under this node
      */
     @Override
-    public TreeNodeIterator iterator()
+    public CompositeIterator<TreeNode<T>> iterator()
     {
-        return new TreeNodeIterator(this);
+        return new CompositeIterator(this);
     }
 
     

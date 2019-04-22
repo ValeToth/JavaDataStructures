@@ -17,9 +17,21 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         variables
     */
     
-    protected Function<A,Integer> calculateArchWeight;
-    private HashMap<IGraphNode<?,A>,Integer> weightMap;
+    protected   Function<A,Integer> calculateArchWeight;
     
+    private     HashMap<IGraphNode<?,A>,Integer> weightMap;
+    private     boolean weightMapIsIncomplete = true;
+
+    
+    /**
+     * 
+     * @return if this path's current weightmap is a complete map of every reachable node or
+     * some nodes are missing due to opimization from last calculations
+     */
+    public boolean isWeightMapIncomplete()
+    {
+        return weightMapIsIncomplete;
+    }    
 
     /**
      * 
@@ -95,7 +107,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         
         HashMap<IGraphNode<?,A>,IGraphNode<?,A>> precedentMap = new HashMap<>();
         
-        generateWeightMap( source, precedentMap );
+        generateWeightMap( source, destination, true, precedentMap );
         
         
         // updates this path object
@@ -120,7 +132,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     @Override 
     public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source )
     {
-        generateWeightMap( source, new HashMap<>() );
+        generateWeightMap( source, null, false, new HashMap<>() );
         return this.weightMap;
     }
     
@@ -128,9 +140,17 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     /**
      * calculates the weight to reach every node from source, with the destination 
      * @param source
+     * @param destination
+     * @param stopAtDestination
      * @param reversePathMap
      */
-    protected void generateWeightMap ( IGraphNode<?,A> source, Map<IGraphNode<?,A>,IGraphNode<?,A>> reversePathMap )
+    protected void generateWeightMap 
+    ( 
+        IGraphNode<?,A> source, 
+        IGraphNode<?,A> destination,
+        boolean stopAtDestination,
+        Map<IGraphNode<?,A>,IGraphNode<?,A>> reversePathMap
+    )
     {
       
         //a list of all reachable graphnodes
@@ -172,14 +192,14 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
                 // total distance from source
                 int dist = weightMap.get(currentNode) + calculateArchWeight.apply(arch.getData());
                 
-
                 
                 if ( dist < weightMap.get( arch.pointsTo() ) )
                 {
                     weightMap.put( arch.pointsTo(), dist );
-
-                    //updates previus graphnode tracking map
                     reversePathMap.put( arch.pointsTo() , currentNode );
+                    
+                    if ( !stopAtDestination && arch.pointsTo() == destination )
+                        return;
                 }
 
                 
@@ -189,6 +209,9 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
             reachableGraphNodes.remove(currentNode);
                         
         }
+        
+        this.weightMapIsIncomplete = stopAtDestination;
+        
     }
         
 }

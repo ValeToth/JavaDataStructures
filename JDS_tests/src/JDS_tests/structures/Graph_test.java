@@ -4,6 +4,7 @@
 package JDS_tests.structures;
 
 import JDS.structures.graphs.*;
+import JDS.structures.graphs.weightedNodes.*;
 
 /**
  *
@@ -48,7 +49,7 @@ public class Graph_test
         {
             long startTime = System.currentTimeMillis();
             
-            Path path = new Path();
+            Path path = new WeightedPath();
             
             System.out.println("path initialization: " + (System.currentTimeMillis() - startTime) + "ms\n-----\n" );
             

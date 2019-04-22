@@ -12,20 +12,20 @@ import java.util.stream.*;
  * @author Jacopo_Wolf
  * @param <T>
  */
-public interface IComposite<T> extends IElement<T>, Iterable< IElement >
+public interface IComposite<T> extends IElement<T>, Iterable
 {
     /**
      * 
      * @return the elements under this Composite
      */
-    public Collection< ? extends IElement > getSubElements();
+    public Collection<? extends IElement> getSubElements();
 
     /**
      * @return in iterator which'll iterate through every recursively reachable element
      * from this instance
      */
     @Override
-    public ICompositeIterator iterator();
+    public CompositeIterator<? extends IElement> iterator();
     
     /**
      * 

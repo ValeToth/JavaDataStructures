@@ -3,6 +3,7 @@
  */
 package JDS.structures.graphs;
 
+import JDS.patterns.composite.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -128,9 +129,9 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     
 
     @Override
-    public GraphNodeIterator iterator()
+    public CompositeIterator<GraphNode<T,A>> iterator()
     {
-        return new GraphNodeIterator(this);
+        return new CompositeIterator( this );
     }
 
     

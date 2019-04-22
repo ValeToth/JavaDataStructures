@@ -3,8 +3,7 @@
  */
 package JDS.structures.tree;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  *  the base class for Tree structres, gives varius options to manipulate the Tree
@@ -44,10 +43,17 @@ public class Tree< Node extends ITreeNode<T> , T > implements ITree<Node,T>
     constructors
 */
     
+    /**
+     * a new empty tree
+     */
     public Tree()
     {
         this(null);
     }
+    /**
+     * a new tree with the specified root node
+     * @param root the new root node
+     */
     public Tree( Node root )
     {
         this.root = root;

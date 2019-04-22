@@ -3,41 +3,50 @@
  */
 package JDS.patterns.composite;
 
-import java.util.Collection;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.stream.*;
+
 
 /**
  * basic interface for Composite elements
  * @author Jacopo_Wolf
  * @param <T>
  */
-public interface IComposite<T> extends IElement<T>
+public interface IComposite<T> extends IElement<T>, Iterable
 {
     /**
      * 
-     * @return the elements in this Composite
+     * @return the elements under this Composite
      */
-    public Collection< ? extends IElement > getSubElements();
+    public Collection<? extends IElement> getSubElements();
+
+    /**
+     * @return in iterator which'll iterate through every recursively reachable element
+     * from this instance
+     */
+    @Override
+    public CompositeIterator<? extends IElement> iterator();
     
     /**
      * 
-     * @param predicate the condition 
-     * @return if any subElement satisfies the predicate
+     * @return a stream of every recursively reachable elements from this instance
      */
-    public boolean containsRecursive( Predicate<IElement> predicate );
+    public Stream<? extends IElement> stream();
     
     /**
      * 
-     * @param predicate the condition
-     * @return finds any subElement that satisfies the predicate
+     * @return a parallelStream of every recursively reachable elements from this instance
      */
-    public Collection< ? extends IElement > findRecursive( Predicate<IElement> predicate );
-  
+    
+    public Stream<? extends IElement> parallelStream();
+    
+    
     
     
     /*
-        static methods
+        STATIC METHODS 
     */
+    
     
     
     /**
@@ -47,7 +56,7 @@ public interface IComposite<T> extends IElement<T>
      * @param root the root element
      * @param out the Collection to wich add the elements
      */
-    public static <A, O extends IElement<A>> void getAllRecursive( IComposite root, Collection<O> out)
+    public static <A, O extends IElement<A>> void getAllRecursive( IComposite root, Collection<O> out )
     {   
         IComposite.getAllRecursive(root, out, true);
     }
@@ -82,5 +91,7 @@ public interface IComposite<T> extends IElement<T>
             }
         }
     }
+        
+    
 
 }

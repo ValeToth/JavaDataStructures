@@ -3,9 +3,9 @@
  */
 package JDS.structures.graphs;
 
-import JDS.patterns.composite.IElement;
+import JDS.patterns.composite.*;
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.stream.*;
 
 /**
  * basic implementation for IGraphNode.
@@ -111,6 +111,8 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     
     
     
+    
+    
     /**
      * 
      * @return the elements directly connected to this node
@@ -123,30 +125,31 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
             out.add( arch.pointsTo() );
         return out;
     }
+       
     
-    /**
-     * returns if the specified element is reachable from this node
-     * @param predicate
-     * @return if the node is reachable
-     */
+
     @Override
-    public boolean containsRecursive( Predicate<IElement> predicate )
+    public CompositeIterator<GraphNode<T,A>> iterator()
     {
-        return IGraphNode.reachableGraphnodes( this ).stream().anyMatch(predicate);
+        return new CompositeIterator( this );
     }
 
-    /**
-     * seaches through all the reachable Nodes
-     * @param predicate the condition to satisfy
-     * @return a collection of the GraphNodes which satisfy the predicate
-     */
+    
     @Override
-    public Collection<IGraphNode> findRecursive( Predicate<IElement> predicate )
+    public Stream<GraphNode<T,A>> stream()
     {
-        ArrayList<IGraphNode> out = new ArrayList<>();
-        IGraphNode.reachableGraphnodes(this).stream().filter(predicate).forEach( el -> out.add(el) );
-        return out;
-    }    
+        return IGraphNode.reachableGraphnodes(this).stream();
+    }
+    
+    @Override
+    public Stream<GraphNode<T,A>> parallelStream()
+    {
+        return IGraphNode.reachableGraphnodes(this).parallelStream();
+    }
+    
+    
+    
+    
     
 
     @Override

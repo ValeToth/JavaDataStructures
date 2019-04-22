@@ -4,7 +4,7 @@
 package JDS_tests.structures;
 
 import JDS.structures.graphs.*;
-import JDS.structures.graphs.weightedNodes.WeightedPath;
+import JDS.structures.graphs.weightedNodes.*;
 
 /**
  *
@@ -25,41 +25,46 @@ public class Graph_test
     public static void main( String[] args )
     {
         
-        IGraphNode<String,Integer>
+        GraphNode<String,Integer>
                 a   = new GraphNode<>("A"),
                 b   = new GraphNode<>("B"),
                 c   = new GraphNode<>("C"),
                 d   = new GraphNode<>("D"),
                 e   = new GraphNode<>("E"),
-                f   = new GraphNode<>("F");
+                f   = new GraphNode<>("F"),
+                g   = new GraphNode<>("G");
         
         
-        a.addGraphNode(e, 10);  a.addGraphNode(b,3);    a.addGraphNode(f,10);
+        a.addGraphNode(e, 10);  a.addGraphNode(b,3);    a.addGraphNode(f,10); 
         b.addGraphNode(d, 3);   b.addGraphNode(c,1);
-        c.addGraphNode(d, 1);
-        d.addGraphNode(e, 2);
-        e.addGraphNode(f, 2);
-        f.addGraphNode(e, 10);
+        c.addGraphNode(d, 1);   c.addGraphNode(a, 2);
+        d.addGraphNode(e, 2);   d.addGraphNode(a, 5);
+        e.addGraphNode(f, 2);   e.addGraphNode(g, 10);
+        f.addGraphNode(e, 10);  f.addGraphNode(g,7);
+        g.addGraphNode(b, 3);
         
+        GraphNode[] nodes = { a,b,c,d,e,f };
         
         try
         {
-        
-            
             long startTime = System.currentTimeMillis();
-            // A->F
-            printPath(  new Path().shortestPath(a, f)  );
             
-            System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
+            Path path = new WeightedPath();
+            
+            System.out.println("path initialization: " + (System.currentTimeMillis() - startTime) + "ms\n-----\n" );
             
             
+            // evey shortestPath call should take around 1 - 3 ms on mid-low performance PCs
+            for ( int i = 0; i < 50; i++ )
+            {
+                startTime = System.currentTimeMillis();
             
-            startTime = System.currentTimeMillis();
+                printPath(  path.shortestPath( nodes[ (int)(Math.random() * nodes.length) ] , nodes[ (int)( Math.random() * nodes.length ) ]) );
+                
+                System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
+            }
             
-            // A->B->C->D->E->F
-            printPath(  new WeightedPath().shortestPath(a, f) );
             
-            System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
             
 
         }

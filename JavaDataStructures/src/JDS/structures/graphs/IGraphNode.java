@@ -3,11 +3,11 @@
  */
 package JDS.structures.graphs;
 
-import JDS.patterns.composite.IComposite;
-import java.util.ArrayList;
-import java.util.Collection;
+import JDS.patterns.composite.*;
+import java.util.*;
 
 /**
+ * 
  * rappresents the node of a Graph
  * @author Jacopo_Wolf
  * @param <T>
@@ -24,11 +24,16 @@ public interface IGraphNode<T,A> extends IComposite<T>
     
     
     /**
-     * add an IGraphNode to this node, with default Arch parameters.
+     * adds an IGraphNode to this node, with default Arch parameters.
      * @param node 
      */
     public void addGraphNode(IGraphNode<T,A> node);
     
+    /**
+     * adds an IGraphNode to this node, with specified Arch parameters.
+     * @param node
+     * @param archValue 
+     */
     public void addGraphNode(IGraphNode<T,A> node, A archValue );
     
     

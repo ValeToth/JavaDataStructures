@@ -17,7 +17,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         variables
     */
     
-    protected   Function<A,Integer> calculateArchWeight;
+    protected   Function<A,Integer> archWeightCalculationBehaviour;
     
     private     HashMap<IGraphNode<?,A>,Integer> weightMap;
     private     boolean weightMapIsIncomplete = true;
@@ -40,7 +40,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     @Override 
     public Function<A, Integer> getCalculateArchWeight()
     {
-        return calculateArchWeight;
+        return archWeightCalculationBehaviour;
     }  
     
     /**
@@ -70,12 +70,12 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
     
     public Path()
     {
-        this.calculateArchWeight = ( A a ) -> 1 ;
+        this.archWeightCalculationBehaviour = ( A a ) -> 1 ;
     }
     
     public Path( Function<A, Integer> calculateArchWeight )
     {
-        this.calculateArchWeight = calculateArchWeight;
+        this.archWeightCalculationBehaviour = calculateArchWeight;
     }
 
     
@@ -161,11 +161,12 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         this.weightMap = new HashMap<>();
         
         for ( IGraphNode<?,A> node : reachableGraphNodes )
-            weightMap.put(node, Integer.MAX_VALUE );
+            this.weightMap.put(node, Integer.MAX_VALUE );
         
         //inits source
-        weightMap.put(source, 0);
+        this.weightMap.put(source, 0);
         reachableGraphNodes.add(source);
+        this.weightMapIsIncomplete = true;
         
         
         //finds shortest path
@@ -185,20 +186,22 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
             //for every connection in current node
             for ( IArch<A> arch : currentNode.getArches() )
             {
-                //if it has alraedy been checked, skip checking ir again.
-                if ( !reachableGraphNodes.contains(arch.pointsTo()) )
+                IGraphNode nextNode = arch.pointsTo();
+                
+                // if it has alraedy been checked, skip checking ir again
+                if ( !reachableGraphNodes.contains( nextNode )) 
                     continue;
                 
                 // total distance from source
-                int dist = weightMap.get(currentNode) + calculateArchWeight.apply(arch.getData());
+                int dist = weightMap.get(currentNode) + archWeightCalculationBehaviour.apply(arch.getData());
                 
-                
-                if ( dist < weightMap.get( arch.pointsTo() ) )
+                // if the new calculated distance is less than the actual distance
+                if ( dist < weightMap.get( nextNode ) )
                 {
-                    weightMap.put( arch.pointsTo(), dist );
-                    reversePathMap.put( arch.pointsTo() , currentNode );
+                    weightMap.put( nextNode, dist );
+                    reversePathMap.put( nextNode , currentNode );
                     
-                    if ( !stopAtDestination && arch.pointsTo() == destination )
+                    if ( !stopAtDestination && (nextNode == destination) )
                         return;
                 }
 
@@ -210,7 +213,8 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
                         
         }
         
-        this.weightMapIsIncomplete = stopAtDestination;
+        //at this point it means the whole graph has been checked, therefore the map can't be incomplete
+        this.weightMapIsIncomplete = false;
         
     }
         

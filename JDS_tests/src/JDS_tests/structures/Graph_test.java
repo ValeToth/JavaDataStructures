@@ -3,8 +3,8 @@
  */
 package JDS_tests.structures;
 
+import JDS.structures.graphs.specific.WeightedPath;
 import JDS.structures.graphs.*;
-import JDS.structures.graphs.weightedNodes.*;
 
 /**
  *
@@ -45,6 +45,7 @@ public class Graph_test
         
         GraphNode[] nodes = { a,b,c,d,e,f };
         
+        
         try
         {
             long startTime = System.currentTimeMillis();
@@ -59,7 +60,14 @@ public class Graph_test
             {
                 startTime = System.currentTimeMillis();
             
-                printPath(  path.shortestPath( nodes[ (int)(Math.random() * nodes.length) ] , nodes[ (int)( Math.random() * nodes.length ) ]) );
+                printPath
+                (  
+                    path.shortestPath
+                    ( 
+                        nodes[ (int)( Math.random() * nodes.length ) ] , 
+                        nodes[ (int)( Math.random() * nodes.length ) ]
+                    ) 
+                );
                 
                 System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
             }

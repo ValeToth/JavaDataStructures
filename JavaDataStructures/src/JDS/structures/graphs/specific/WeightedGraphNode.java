@@ -1,7 +1,7 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs.weightedNodes;
+package JDS.structures.graphs.specific;
 
 import JDS.structures.graphs.Arch;
 import JDS.structures.graphs.GraphNode;

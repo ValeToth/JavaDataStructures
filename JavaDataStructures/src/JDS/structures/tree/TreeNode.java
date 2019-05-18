@@ -21,6 +21,10 @@ public class TreeNode<T> implements ITreeNode<T>
 */
     
     private T content;
+
+    /**
+     *  nodes under this 
+     */
     protected LinkedList<TreeNode<T>> subNodes;
     
     /**

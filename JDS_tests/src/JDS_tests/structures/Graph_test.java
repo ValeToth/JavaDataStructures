@@ -3,8 +3,8 @@
  */
 package JDS_tests.structures;
 
-import JDS.structures.graphs.specific.WeightedPath;
 import JDS.structures.graphs.*;
+import JDS.structures.graphs.specific.*;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Graph_test
             System.out.println("\b\b");
     }
     
-    public static void main( String[] args )
+    public static void main( String[] args ) throws InterruptedException
     {
         
         GraphNode<String,Integer>
@@ -56,20 +56,24 @@ public class Graph_test
             
             
             // evey shortestPath call should take around 1 - 3 ms on mid-low performance PCs
-            for ( int i = 0; i < 50; i++ )
+            for ( int i = 0; i < 50; i++ ) 
             {
-                startTime = System.currentTimeMillis();
-            
-                printPath
-                (  
-                    path.shortestPath
-                    ( 
-                        nodes[ (int)( Math.random() * nodes.length ) ] , 
-                        nodes[ (int)( Math.random() * nodes.length ) ]
-                    ) 
-                );
                 
-                System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms" );
+            
+                IGraphNode  a1 = nodes[ (int)( Math.random() * nodes.length ) ];
+                Thread.sleep(20);
+                IGraphNode  a2 = nodes[ (int)( Math.random() * nodes.length ) ];
+                
+                System.out.println( "from " + a1.getContent() + " to " + a2.getContent() );
+                
+                
+                
+                startTime = System.currentTimeMillis();
+                
+                printPath ( path.shortestPath(a1,a2,true) );
+                
+                System.out.println("time taken: " + (System.currentTimeMillis() - startTime) + "ms\n" );
+                
             }
             
             

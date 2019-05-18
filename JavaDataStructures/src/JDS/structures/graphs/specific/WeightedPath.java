@@ -12,6 +12,9 @@ import JDS.structures.graphs.*;
 public class WeightedPath extends Path< Integer >
 {
 
+    /**
+     *  create a new instance of weighted path.
+     */
     public WeightedPath(  )
     {
         super( (Integer i) -> i  );

@@ -15,6 +15,10 @@ import java.util.*;
 public class CompositeIterator< E extends IElement > implements Iterator< E >
 {
     
+    /**
+     * Check if a Composite refers to an already checked Element when reading the structure.
+     * If false might generate a stackOverflow but greately increase performance.
+     */
     public boolean checkStackOverflow = true;
     
     private Iterator<E> iterator;

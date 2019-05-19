@@ -19,8 +19,15 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     /*
         variables
     */
-    
+
+    /**
+     *
+     */
     protected T content;
+
+    /**
+     *
+     */
     protected ArrayList<IArch<A>> connections = new ArrayList<>();
     
     

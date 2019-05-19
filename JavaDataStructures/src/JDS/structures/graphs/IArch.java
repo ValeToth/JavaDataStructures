@@ -15,7 +15,7 @@ public interface IArch<T>
      * 
      * @return the information of this arch
      */
-    public T getData();
+    public T getMetadata();
     
     /**
      * 

@@ -1,11 +1,9 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs.weightedNodes;
+package JDS.structures.graphs.specific;
 
-import JDS.structures.graphs.Arch;
-import JDS.structures.graphs.GraphNode;
-import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.*;
 
 /**
  *
@@ -15,10 +13,17 @@ import JDS.structures.graphs.IGraphNode;
 public class WeightedGraphNode<T> extends GraphNode<T, Integer>
 {
 
+    /**
+     *  instantiates a new WeighedGraphNode
+     */
     public WeightedGraphNode ()
     {
     }
     
+    /**
+     *  instantiates a new WeighedGraphNode
+     * @param content add this to the new instance
+     */
     public WeightedGraphNode( T content )
     {
         super(content);

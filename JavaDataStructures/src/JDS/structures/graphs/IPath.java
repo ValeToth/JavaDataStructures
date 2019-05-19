@@ -41,6 +41,15 @@ interface IPath<A>
     public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
     
     /**
+     * finds the shortest path between source and destination node
+     * @param source
+     * @param destination
+     * @return
+     * @throws PathNotFoundException 
+     */
+    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination  ) throws PathNotFoundException;
+    
+    /**
      * generates weight map of every reachable Graphnode from source and returns it.
      * @param source
      * @return 

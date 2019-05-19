@@ -12,27 +12,34 @@ package JDS.structures.graphs;
 public class Arch<T> implements IArch<T>
 {
     
-    protected T data;
+    /**
+     *  metadata contained in this arch
+     */
+    protected T metadata;
+
+    /**
+     * the node this arch points to
+     */
     protected IGraphNode pointsto;
 
     
             
     /**
      * 
-     * @return the data stored in this arch
+     * @return the metadata stored in this arch
      */
     @Override
-    public T getData()
+    public T getMetadata()
     {
-        return this.data;
+        return this.metadata;
     }
     /**
-     * sets the data contained in this arch
-     * @param data new data
+     * sets the metadata contained in this arch
+     * @param metadata new metadata
      */
-    public void setData( T data )
+    public void setMetadata( T metadata )
     {
-        this.data = data;
+        this.metadata = metadata;
     }
 
     
@@ -49,12 +56,12 @@ public class Arch<T> implements IArch<T>
     
     /**
      * initializes a new Arch
-     * @param data set the data of the Arch
+     * @param data set the metadata of the Arch
      * @param pointsto the node this Arch will point to
      */
     public Arch( T data, IGraphNode pointsto )
     {
-        this.data = data;
+        this.metadata = data;
         this.pointsto = pointsto;
     }
     /**
@@ -63,7 +70,7 @@ public class Arch<T> implements IArch<T>
      */
     public Arch( IGraphNode pointsto )
     {
-        this.data = null;
+        this.metadata = null;
         this.pointsto = pointsto;
     }
     /**
@@ -71,7 +78,7 @@ public class Arch<T> implements IArch<T>
      */
     public Arch()
     {
-        this.data = null;
+        this.metadata = null;
         this.pointsto = null;
     }
 
@@ -80,7 +87,7 @@ public class Arch<T> implements IArch<T>
     @Override
     public String toString()
     {
-        return "Arch [ " + this.data.toString() + ", points to " + this.pointsto.toString() + " ]";
+        return "Arch [ " + this.metadata.toString() + ", points to " + this.pointsto.toString() + " ]";
     }
     
     

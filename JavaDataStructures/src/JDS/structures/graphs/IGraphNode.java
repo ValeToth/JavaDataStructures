@@ -42,7 +42,7 @@ public interface IGraphNode<T,A> extends IComposite<T>
      * @return all the elements directly connected to this GraphNode.
      */
     @Override
-    public Collection<? extends IGraphNode<T,A>> getSubElements();
+    public Collection<? extends IGraphNode<T,A>> getConnectedElements();
     
     
     /**

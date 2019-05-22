@@ -18,7 +18,7 @@ interface IPath<A>
      * 
      * @return the function called to calculate weight of every arch between nodes
      */
-    public Function<A,Integer> getCalculateArchWeight();
+    public Function<A,Integer> getCalculateArchWeightBehaviour();
     /**
      * 
      * @return the source node of this Path object

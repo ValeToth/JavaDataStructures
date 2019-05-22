@@ -125,7 +125,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
      * @return the elements directly connected to this node
      */
     @Override
-    public final Collection<? extends IGraphNode<T,A>> getSubElements()
+    public final Collection<? extends IGraphNode<T,A>> getConnectedElements()
     {
         ArrayList<IGraphNode<T,A>> out = new ArrayList<>();
         for ( IArch arch : this.connections )

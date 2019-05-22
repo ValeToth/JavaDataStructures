@@ -52,7 +52,7 @@ public class TreeNode<T> implements ITreeNode<T>
      * @return the Nodes directly under this TreeNode
      */
     @Override
-    public Collection<TreeNode<T>> getSubElements()
+    public Collection<TreeNode<T>> getConnectedElements()
     {
         return this.subNodes;
     }

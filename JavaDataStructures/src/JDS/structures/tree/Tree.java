@@ -87,7 +87,7 @@ public class Tree< Node extends ITreeNode<T> , T > implements ITree<Node,T>
      */
     static public<E> void getAllSubNodes ( ITreeNode<E> root, Collection<ITreeNode<E>> out )
     {      
-        for ( ITreeNode<E> node : root.getSubElements() )
+        for ( ITreeNode<E> node : root.getConnectedElements() )
         {
             if ( node.hasNeighbors() )
                 getAllSubNodes(node, out);

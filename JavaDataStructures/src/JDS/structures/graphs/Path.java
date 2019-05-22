@@ -38,7 +38,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
      * @return the function used to calculate the weight of every arch
      */
     @Override 
-    public Function<A, Integer> getCalculateArchWeight()
+    public Function<A, Integer> getCalculateArchWeightBehaviour()
     {
         return archWeightCalculationBehaviour;
     }  

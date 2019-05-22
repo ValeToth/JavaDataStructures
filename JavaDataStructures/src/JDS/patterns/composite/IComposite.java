@@ -8,7 +8,7 @@ import java.util.stream.*;
 
 
 /**
- * basic interface for Composite elements
+ * base interface for Composite elements
  * @author Jacopo_Wolf
  * @param <T>
  */
@@ -18,14 +18,16 @@ public interface IComposite<T> extends IElement<T>, Iterable
      * 
      * @return the elements under this Composite
      */
-    public Collection<? extends IElement> getSubElements();
+    public Collection<? extends IElement> getConnectedElements();
 
+    
     /**
      * @return in iterator which'll iterate through every recursively reachable element
      * from this instance
      */
     @Override
     public CompositeIterator<? extends IElement> iterator();
+    
     
     /**
      * 
@@ -50,7 +52,7 @@ public interface IComposite<T> extends IElement<T>, Iterable
     
     
     /**
-     * recursively returns all sub elements of root, checking for reference to already inderted elements.
+     * recursively returns all connected elements of root, checking for reference to already inderted elements.
      * @param <A> the content of the elements
      * @param <O> the IElement type of the out list
      * @param root the root element
@@ -79,7 +81,7 @@ public interface IComposite<T> extends IElement<T>, Iterable
         ) 
         throws StackOverflowError
     {
-        for ( IElement<A> el : root.getSubElements() )
+        for ( IElement<A> el : root.getConnectedElements() )
         {
             // doesn't check for second condition of the first is true.
             if ( !checkStackOverflow || !out.contains(el) ) 
@@ -87,11 +89,9 @@ public interface IComposite<T> extends IElement<T>, Iterable
                 out.add((O)el);
             
                 if ( el instanceof IComposite )
-                    IComposite.getAllRecursive( (IComposite<A>)el , out, checkStackOverflow);   
+                    IComposite.getAllRecursive( (IComposite<A>)el , out, checkStackOverflow );   
             }
         }
     }
         
-    
-
 }

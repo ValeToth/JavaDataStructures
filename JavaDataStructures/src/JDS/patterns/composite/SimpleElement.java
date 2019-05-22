@@ -8,7 +8,7 @@ package JDS.patterns.composite;
  * @author Jacopo
  * @param <T>
  */
-public abstract class Element<T> implements IElement<T>
+public abstract class SimpleElement<T> implements IElement<T>
 {
     private T content;
 

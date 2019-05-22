@@ -12,7 +12,12 @@ import JDS.structures.graphs.*;
  */
 public class WeightedGraphNode<T> extends GraphNode<T, Integer>
 {
-
+    /**
+     * default value assigned to a new arch when not specified.
+     */
+    public static int defaultArchValue = Integer.MAX_VALUE;
+    
+    
     /**
      *  instantiates a new WeighedGraphNode
      */
@@ -41,7 +46,7 @@ public class WeightedGraphNode<T> extends GraphNode<T, Integer>
     @Override
     public void addGraphNode( IGraphNode<T, Integer> node )
     {
-        this.connections.add( new Arch<>(Integer.MAX_VALUE, node) );
+        this.connections.add( new Arch<>(defaultArchValue, node) );
     }
     
     

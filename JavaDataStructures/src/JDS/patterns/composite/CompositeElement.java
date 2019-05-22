@@ -7,15 +7,15 @@ import java.util.*;
 import java.util.stream.*;
 
 /**
- *
+ * abstract implementation of IComposite
  * @author Jacopo
  * @param <T>
  */
-public abstract class Composite<T> extends Element<T> implements IComposite<T>
+public abstract class CompositeElement<T> extends SimpleElement<T> implements IComposite<T>
 {
 
     @Override
-    public abstract Collection<? extends IElement> getSubElements();
+    public abstract Collection<? extends IElement> getConnectedElements();
 
     @Override
     public CompositeIterator<? extends IElement> iterator()

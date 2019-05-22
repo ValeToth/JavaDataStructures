@@ -18,7 +18,7 @@ public interface ITreeNode<T> extends IComposite<T>
      * @return the subElements directly under this TreeNode
      */
     @Override
-    public Collection<? extends ITreeNode<T>> getSubElements(); 
+    public Collection<? extends ITreeNode<T>> getConnectedElements(); 
     
     /**
      * 

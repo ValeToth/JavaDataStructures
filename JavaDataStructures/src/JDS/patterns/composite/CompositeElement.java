@@ -7,8 +7,8 @@ import java.util.*;
 import java.util.stream.*;
 
 /**
- * abstract implementation of IComposite
- * @author Jacopo
+ * Base implementation of the composite element
+ * @author JacopoWolf
  * @param <T>
  */
 public abstract class CompositeElement<T> extends SimpleElement<T> implements IComposite<T>

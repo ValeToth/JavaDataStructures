@@ -6,8 +6,8 @@ package JDS.structures.graphs.specific;
 import JDS.structures.graphs.*;
 
 /**
- *
- * @author JacopoWolf
+ * a path which uses Intger metadata.
+ * @author Jacopo_Wolf
  */
 public class WeightedPath extends Path< Integer >
 {

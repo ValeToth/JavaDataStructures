@@ -8,10 +8,10 @@ import java.util.*;
 import java.util.stream.*;
 
 /**
- * basic implementation for IGraphNode.
+ * rappresents the node of a Graph
  * @author Jacopo_Wolf
- * @param <T> 
- * @param <A> 
+ * @param <T> the content type
+ * @param <A> the arch metadata type
  */
 public class GraphNode<T,A> implements IGraphNode<T,A>
 {
@@ -21,12 +21,12 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
     */
 
     /**
-     *
+     * this node's content
      */
     protected T content;
 
     /**
-     *
+     *this node's connections
      */
     protected ArrayList<IArch<A>> connections = new ArrayList<>();
     

@@ -7,22 +7,22 @@ package JDS.structures.graphs;
  *  an arch, the arrow pointing at another graph.
  * 
  * @author Jacopo_Wolf
- * @param <T>
+ * @param <A>
  */
-public interface IArch<T>
+public interface IArch<A>
 {
     /**
      * 
      * @return the information of this arch
      */
-    public T getMetadata();
+    public A getMetadata();
     
     /**
      * 
      * @param <E> type of graphnode
      * @return the GraphNode this arch points to
      */
-    public < E extends IGraphNode<?,T> > E pointsTo ( );
+    public < E extends IGraphNode<?,A> > E pointsTo ( );
 
     
 }

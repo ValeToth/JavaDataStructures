@@ -8,7 +8,7 @@ import java.util.function.*;
 
 
 /**
- *
+ * interface for all Paths
  * @author JacopoWolf
  */
 interface IPath<A>

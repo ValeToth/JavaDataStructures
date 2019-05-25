@@ -16,7 +16,7 @@ public interface IComposite<T> extends IElement<T>, Iterable
 {
     /**
      * 
-     * @return the elements under this Composite
+     * @return the elements directly connected to this
      */
     public Collection<? extends IElement> getConnectedElements();
 
@@ -93,5 +93,4 @@ public interface IComposite<T> extends IElement<T>, Iterable
             }
         }
     }
-        
 }

@@ -1,6 +1,3 @@
-[Javadoc](https://github.com/JacopoWolf/JavaDataStructures/releases/download/v1.1/javadoc.zip)
-[Binaries](https://github.com/JacopoWolf/JavaDataStructures/releases/download/v1.1/JavaDataStructures.jar)
-
 ### by JacopoWolf
 -----
 <br>

@@ -6,7 +6,7 @@ package JDS.structures.graphs.specific;
 import JDS.structures.graphs.*;
 
 /**
- *
+ * a graph node using an Intger as metadata for arches.
  * @author Jacopo_Wolf
  * @param <T>
  */

@@ -4,8 +4,8 @@
 package JDS.patterns.composite;
 
 /**
- *
- * @author Jacopo
+ * Base implementation of the simple element.
+ * @author JacopoWolf
  * @param <T>
  */
 public abstract class SimpleElement<T> implements IElement<T>

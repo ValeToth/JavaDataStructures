@@ -7,15 +7,15 @@ package JDS.structures.graphs;
 /**
  * implements IArch, rappresents uniateral connection between two nodes.
  * @author Jacopo_Wolf
- * @param <T> The type of content 
+ * @param <A> The type of content 
  */
-public class Arch<T> implements IArch<T>
+public class Arch<A> implements IArch<A>
 {
     
     /**
      *  metadata contained in this arch
      */
-    protected T metadata;
+    protected A metadata;
 
     /**
      * the node this arch points to
@@ -29,7 +29,7 @@ public class Arch<T> implements IArch<T>
      * @return the metadata stored in this arch
      */
     @Override
-    public T getMetadata()
+    public A getMetadata()
     {
         return this.metadata;
     }
@@ -37,7 +37,7 @@ public class Arch<T> implements IArch<T>
      * sets the metadata contained in this arch
      * @param metadata new metadata
      */
-    public void setMetadata( T metadata )
+    public void setMetadata( A metadata )
     {
         this.metadata = metadata;
     }
@@ -59,7 +59,7 @@ public class Arch<T> implements IArch<T>
      * @param data set the metadata of the Arch
      * @param pointsto the node this Arch will point to
      */
-    public Arch( T data, IGraphNode pointsto )
+    public Arch( A data, IGraphNode pointsto )
     {
         this.metadata = data;
         this.pointsto = pointsto;

@@ -1,7 +1,3 @@
-### by JacopoWolf
------
-<br>
-
 ## About
 This is a simple Java **library for commonly used patterns and data structures** implementing them.<br>
 Our main goal is to create a simple-to-use library for beginner in the data structures field.

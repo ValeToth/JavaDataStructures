@@ -10,6 +10,9 @@ If you're not good at writing code, then you could read the existing one and cre
 the code style we're going to follow is for easy read, so there are some simple rules:
 * newline parentesis
   ``` java
+  /**
+  * method description
+  */
   public void method (  )
   {
     code goes here

@@ -7,4 +7,7 @@ Our main goal is to create a simple-to-use library for beginner in the data stru
 
 ## [Documentation](javadoc/index.html)
 
-## [Tutorials (in development)](TUTORIALS.md)
+
+## [Tutorials (in development)](tutorials/TUTORIALS.md)
+
+

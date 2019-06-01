@@ -8,7 +8,7 @@
  ###### from [Wikipedia](https://en.wikipedia.org/wiki/Composite_pattern)
 
 <center>
-<img src="CompositePAttern.png" width="40%"  >
+<img src="CompositePattern.png" width="40%"  >
 
 ##### the composite pattern UML diagram
 </center>

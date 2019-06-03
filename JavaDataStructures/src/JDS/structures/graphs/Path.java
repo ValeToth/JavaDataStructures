@@ -11,12 +11,15 @@ import java.util.function.*;
  * @author Jacopo_Wolf
  * @param <A> type of data contained in the Arches
  */
-public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
+public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMapPath<A>
 {
     /*
         variables
     */
 
+    /**
+     * behaviour used to calculate the weight of the connections
+     */
     protected   Function<A,Integer> archWeightCalculationBehaviour;
     
     private     HashMap<IGraphNode<?,A>,Integer> weightMap;
@@ -33,25 +36,26 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         return weightMapIsIncomplete;
     }    
 
-    /**
-     * 
-     * @return the function used to calculate the weight of every arch
-     */
+
     @Override 
     public Function<A, Integer> getCalculateArchWeightBehaviour()
     {
         return archWeightCalculationBehaviour;
     }  
     
-    /**
-     * 
-     * @return the source node ( o starting node ) of this path
-     */
+
     @Override
-    public IGraphNode<?, A> getSourceNode()
+    public <NodeT extends IGraphNode<?,A>> NodeT getSourceNode()
     {
-        return this.getFirst();
+        return (NodeT)this.getFirst();
     }
+    
+    @Override
+    public <NodeT extends IGraphNode<?,A>> NodeT getDestinationNode()
+    {
+        return (NodeT)this.getLast();
+    }
+    
 
     /**
      * 
@@ -130,12 +134,8 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
 
     
     
-    /**
-     * calculates the weight to reach every node from source
-     * @param source
-     * @return 
-     */
-    @Override 
+
+    @Override
     public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source )
     {
         generateWeightMap( source, null, false, new HashMap<>() );
@@ -155,7 +155,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         IGraphNode<?,A> source, 
         IGraphNode<?,A> destination,
         boolean stopAtDestination,
-        Map<IGraphNode<?,A>,IGraphNode<?,A>> reversePathMap
+        Map< IGraphNode<?,A>, IGraphNode<?,A> > reversePathMap
     )
     {
       
@@ -163,11 +163,12 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         LinkedList<IGraphNode<?,A>> nodesToCheck = new LinkedList<>( IGraphNode.reachableGraphnodes(source) );
            
         
-        //maps every reachable node and the weight to reach it.
+        //maps every reachable node and the weight to reach it, by default set to MAX_VALUE
         this.weightMap = new HashMap<>();
         
         for ( IGraphNode<?,A> node : nodesToCheck )
             this.weightMap.put(node, Integer.MAX_VALUE );
+        
         
         //inits source
         this.weightMap.put(source, 0);
@@ -176,13 +177,13 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
         this.weightMapIsIncomplete = true;
         
         
-        //finds shortest path
+        //the current node
         IGraphNode<?,A> currentNode;
         
-        // while there are nodes to check
+        // while there are nodes to check ->
         while ( !nodesToCheck.isEmpty() )
         {
-            // the node with the minimum weight in the unchecked nodes
+            // set the current node to the node with the minimum weight from the nodes still to check
             currentNode =
                 nodesToCheck.parallelStream()
                 .min( (a, b) -> weightMap.get(a) - weightMap.get(b) )
@@ -195,19 +196,21 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IPath<A>
             {
                 IGraphNode nextNode = arch.pointsTo();
                 
-                // if it has alraedy been checked, skip checking ir again
-                if ( !nodesToCheck.contains( nextNode )) 
+                // if it has alraedy been checked, avoid checking it again
+                if ( !nodesToCheck.parallelStream().anyMatch( node -> node.equals(nextNode)) )
                     continue;
                 
-                // total distance from source
-                int totalDistance = weightMap.get(currentNode) + archWeightCalculationBehaviour.apply(arch.getMetadata());
                 
+                // total distance from source
+                int totalDistance = weightMap.get(currentNode) + archWeightCalculationBehaviour.apply( arch.getMetadata() );
+
                 // if the new calculated distance is less than the actual distance
                 if ( totalDistance < weightMap.get( nextNode ) )
                 {
                     weightMap.put( nextNode, totalDistance );
                     reversePathMap.put( nextNode , currentNode );
-                    
+
+                    // if the destination has been reached, we're done
                     if ( stopAtDestination && (nextNode == destination) )
                         return;
                 }

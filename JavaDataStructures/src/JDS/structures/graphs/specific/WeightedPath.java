@@ -17,7 +17,7 @@ public class WeightedPath extends Path< Integer >
      */
     public WeightedPath(  )
     {
-        super( (Integer i) -> i  );
+        super( (Integer i) -> Math.abs( i )  );
     }
     
 }

@@ -24,15 +24,13 @@ public class Arch<A> implements IArch<A>
 
     
             
-    /**
-     * 
-     * @return the metadata stored in this arch
-     */
+
     @Override
     public A getMetadata()
     {
         return this.metadata;
     }
+    
     /**
      * sets the metadata contained in this arch
      * @param metadata new metadata
@@ -42,11 +40,7 @@ public class Arch<A> implements IArch<A>
         this.metadata = metadata;
     }
 
-    
-    /**
-     * 
-     * @return the IGraphNode this Arch points to
-     */
+
     @Override
     public IGraphNode pointsTo()
     {

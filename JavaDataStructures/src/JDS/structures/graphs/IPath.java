@@ -4,59 +4,28 @@
 package JDS.structures.graphs;
 
 import java.util.*;
-import java.util.function.*;
 
 
 /**
  * interface for all Paths
  * @author JacopoWolf
+ * @param <A> the type of the Arch metadata
  */
-interface IPath<A>
+public interface IPath<A> extends List<IGraphNode<?,A>>
 {
     
     /**
      * 
-     * @return the function called to calculate weight of every arch between nodes
-     */
-    public Function<A,Integer> getCalculateArchWeightBehaviour();
-    /**
-     * 
+     * @param <NodeT>
      * @return the source node of this Path object
      */
-    public IGraphNode<?,A> getSourceNode();
+    public <NodeT extends IGraphNode<?,A>> NodeT getSourceNode();
     
     /**
      * 
-     * @return this Path's weight map
+     * @param <NodeT>
+     * @return the final node reached
      */
-    public Map<IGraphNode<?,A>,Integer> getWeightMap();
-    
-    /**
-     * finds the shortest path between source and destination node
-     * @param source
-     * @param destination
-     * @return
-     * @throws PathNotFoundException 
-     */
-    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
-    
-    /**
-     * finds the shortest path between source and destination node
-     * @param source
-     * @param destination
-     * @return
-     * @throws PathNotFoundException 
-     */
-    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination  ) throws PathNotFoundException;
-    
-    /**
-     * generates weight map of every reachable Graphnode from source and returns it.
-     * @param source
-     * @return 
-     */
-    public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source );
-    
-    
-    
+    public <NodeT extends IGraphNode<?,A>> NodeT getDestinationNode();
     
 }

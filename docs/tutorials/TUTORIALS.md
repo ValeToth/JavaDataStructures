@@ -23,7 +23,7 @@
 
 In this library graphs are based upon the __composite pattern__ and are of the __Directed__ type, meaning the edges (or arches) from node to node are unilateral.
 
-#### Specifics about this library
+#### Example
 Nodes are called GraphNodes, and take to generic parameters:
 - __T__ is the type of the _content_ of the Graph
 - __A__ is the type of the _metadata of the Arch_ 
@@ -31,17 +31,24 @@ Nodes are called GraphNodes, and take to generic parameters:
 ```java
 GraphNode<T,A>
 ```
+
 <br>
 
-Here there's an example creating the following structure:
+This is an example code to recreate the rappresented structure.
 
-<img src="" width="40%" alt="insert structure image here">
+<center>
+<img src="GraphExample.png" width="250px" alt="insert structure image here">
+</center>
 
 ```java
-GraphNode<String, Double> nodeA = new GraphNode<>("node A");
-GraphNode<String, Double> nodeB = new GraphNode<>("node B");
+GraphNode<String, Double> nodeA = new GraphNode<>("A");
+GraphNode<String, Double> nodeB = new GraphNode<>("B");
 
 nodeA.addGraphNode(nodeB, 10.0);
-nodeB.addGraphNode(nodeA, 10.0)
+nodeB.addGraphNode(nodeA, 10.0);
+```
 
+let's now say you want to get a list of every node reachable from node _A_
+```java
+Collection<IGraphNode> nodesReachableFromA = IGraphNode.reachableGraphnodes( nodeA );
 ```

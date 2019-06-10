@@ -1,8 +1,10 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs;
+package JDS.structures.graphs.paths;
 
+import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.paths.IPath;
 import java.util.*;
 import java.util.function.*;
 
@@ -12,7 +14,7 @@ import java.util.function.*;
  * @author Jacopo_Wolf
  * @param <A>
  */
-public interface IWeightMapPath<A> extends IPath<A>
+public interface IWeightMapPath<A> extends IPath<A, IGraphNode<?,A> >
 {
     /**
      * 

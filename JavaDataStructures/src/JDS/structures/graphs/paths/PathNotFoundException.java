@@ -1,7 +1,9 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs;
+package JDS.structures.graphs.paths;
+
+import JDS.structures.graphs.IGraphNode;
 
 /**
  * thrown when there's no possible path between two specified GraphNodes

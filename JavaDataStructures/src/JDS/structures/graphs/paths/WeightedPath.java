@@ -1,15 +1,13 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs.specific;
-
-import JDS.structures.graphs.*;
+package JDS.structures.graphs.paths;
 
 /**
  * a path which uses Intger metadata.
  * @author Jacopo_Wolf
  */
-public class WeightedPath extends Path< Integer >
+public class WeightedPath extends WeightMapPath< Integer >
 {
 
     /**

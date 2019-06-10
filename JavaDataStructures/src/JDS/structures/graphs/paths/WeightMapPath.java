@@ -1,8 +1,10 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs;
+package JDS.structures.graphs.paths;
 
+import JDS.structures.graphs.IArch;
+import JDS.structures.graphs.IGraphNode;
 import java.util.*;
 import java.util.function.*;
 
@@ -11,7 +13,7 @@ import java.util.function.*;
  * @author Jacopo_Wolf
  * @param <A> type of data contained in the Arches
  */
-public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMapPath<A>
+public class WeightMapPath< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMapPath<A>
 {
     /*
         variables
@@ -37,25 +39,12 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMap
     }    
 
 
+    
     @Override 
     public Function<A, Integer> getCalculateArchWeightBehaviour()
     {
         return archWeightCalculationBehaviour;
     }  
-    
-
-    @Override
-    public <NodeT extends IGraphNode<?,A>> NodeT getSourceNode()
-    {
-        return (NodeT)this.getFirst();
-    }
-    
-    @Override
-    public <NodeT extends IGraphNode<?,A>> NodeT getDestinationNode()
-    {
-        return (NodeT)this.getLast();
-    }
-    
 
     /**
      * 
@@ -75,7 +64,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMap
     /**
      * create a new Path instance with default calculation 
      */
-    public Path()
+    public WeightMapPath()
     {
         this.archWeightCalculationBehaviour = ( A a ) -> 1 ;
     }
@@ -84,7 +73,7 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMap
      *
      * @param calculateArchWeight
      */
-    public Path( Function<A, Integer> calculateArchWeight )
+    public WeightMapPath( Function<A, Integer> calculateArchWeight )
     {
         this.archWeightCalculationBehaviour = calculateArchWeight;
     }
@@ -99,13 +88,13 @@ public class Path< A > extends LinkedList<IGraphNode<?,A>> implements IWeightMap
     */
     
     @Override
-    public Path<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException
+    public WeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException
     {
         return this.shortestPath(source, destination,false);
     }
 
     @Override 
-    public Path<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination ) throws PathNotFoundException
+    public WeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination ) throws PathNotFoundException
     {
         //checks if the destination is reachable
         if ( source.parallelStream().noneMatch( e -> e.equals(destination) ) )

@@ -51,6 +51,9 @@ public class FunctionalPath<T, A> extends ArrayList<FunctionalGraphNode<T,A>> im
                                 currentNode.getArches() 
                             );
             
+            if ( calcResult == null )
+                break;
+            
             currentData = calcResult.modifiedData;
             currentNode = calcResult.nextNode;
             

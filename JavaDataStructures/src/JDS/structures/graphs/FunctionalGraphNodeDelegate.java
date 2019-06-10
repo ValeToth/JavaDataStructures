@@ -10,11 +10,13 @@ import java.util.*;
  * Function used to calculate the next node.
  * Returns null if there's no way to go.
  * @author Jacopo_Wolf
+ * @param <T>
+ * @param <A>
  */
 @FunctionalInterface
-public interface FunctionalGraphNodeDelegate
+public interface FunctionalGraphNodeDelegate<T,A>
 {
-    <T,A> FunctionalGraphNodeReturn<T,A> apply( T baseValue, T nodeValue , Collection< IArch<A> > directions );
+    FunctionalGraphNodeReturn<T,A> apply( T token, T nodeValue , Collection< IArch<A> > directions );
     
     
     /**

@@ -25,12 +25,14 @@ In this library graphs are based upon the __composite pattern__ and are of the _
 
 #### Example
 Nodes are called GraphNodes, and take to generic parameters:
+```java
+GraphNode<T,A> 
+```
 - __T__ is the type of the _content_ of the Graph
 - __A__ is the type of the _metadata of the Arch_ 
 
-```java
-GraphNode<T,A>
-```
+
+
 
 <br>
 
@@ -48,7 +50,7 @@ nodeA.addGraphNode(nodeB, 10.0);
 nodeB.addGraphNode(nodeA, 10.0);
 ```
 
-let's now say you want to get a list of every node reachable from node _A_
+let's now say you want to get a list of every node reachable from _nodeA_
 ```java
 Collection<IGraphNode> nodesReachableFromA = IGraphNode.reachableGraphnodes( nodeA );
 ```

@@ -3,8 +3,10 @@
  */
 package JDS_tests.structures;
 
+import JDS.structures.graphs.paths.WeightedPath;
+import JDS.structures.graphs.paths.WeightMapPath;
+import JDS.structures.graphs.paths.PathNotFoundException;
 import JDS.structures.graphs.*;
-import JDS.structures.graphs.specific.*;
 
 /**
  *
@@ -13,7 +15,7 @@ import JDS.structures.graphs.specific.*;
 public class Graph_test
 {
     
-    public static <A> void printPath ( Path<A> path ) 
+    public static <A> void printPath ( WeightMapPath<A> path ) 
     {
         for ( IGraphNode node : path )
             {
@@ -50,7 +52,7 @@ public class Graph_test
         {
             long startTime = System.currentTimeMillis();
             
-            Path path = new WeightedPath();
+            WeightMapPath path = new WeightedPath();
             
             System.out.println("path initialization: " + (System.currentTimeMillis() - startTime) + "ms\n-----\n" );
             

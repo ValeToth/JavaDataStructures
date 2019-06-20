@@ -58,7 +58,7 @@ public class GraphNode<T,A> implements IGraphNode<T,A>
      * @return a list of the arches which start from this node
      */
     @Override
-    public Collection<? extends IArch<A>> getArches()
+    public final Collection<IArch<A>> getArches()
     {
         return this.connections;
     }

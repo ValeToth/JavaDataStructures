@@ -1,29 +1,27 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs;
+package JDS.structures.graphs.paths;
 
+import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.paths.IPath;
 import java.util.*;
 import java.util.function.*;
 
 
 /**
- * interface for all Paths
- * @author JacopoWolf
+ *
+ * @author Jacopo_Wolf
+ * @param <A>
  */
-interface IPath<A>
+public interface IWeightMapPath<A> extends IPath<A, IGraphNode<?,A> >
 {
-    
     /**
      * 
      * @return the function called to calculate weight of every arch between nodes
      */
     public Function<A,Integer> getCalculateArchWeightBehaviour();
-    /**
-     * 
-     * @return the source node of this Path object
-     */
-    public IGraphNode<?,A> getSourceNode();
+    
     
     /**
      * 
@@ -33,21 +31,22 @@ interface IPath<A>
     
     /**
      * finds the shortest path between source and destination node
-     * @param source
-     * @param destination
-     * @return
+     * @param source the source node
+     * @param destination the destination node
+     * @return the shortest path from source to destination
      * @throws PathNotFoundException 
      */
-    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
+    public IWeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination ) throws PathNotFoundException;
     
     /**
      * finds the shortest path between source and destination node
-     * @param source
-     * @param destination
-     * @return
+     * @param source the source node
+     * @param destination the destination node
+     * @param stopAtDestination if the destination node is reached, then stop calculating
+     * @return the shortest path from source to destination
      * @throws PathNotFoundException 
      */
-    public IPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination  ) throws PathNotFoundException;
+    public IWeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination  ) throws PathNotFoundException;
     
     /**
      * generates weight map of every reachable Graphnode from source and returns it.
@@ -55,8 +54,5 @@ interface IPath<A>
      * @return 
      */
     public Map<IGraphNode<?,A>,Integer> generateWeightMap( IGraphNode<?,A> source );
-    
-    
-    
     
 }

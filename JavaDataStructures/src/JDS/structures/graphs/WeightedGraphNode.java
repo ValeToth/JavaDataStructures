@@ -1,7 +1,7 @@
 /*
  * see licence at https://github.com/JacopoWolf/JavaDataStructures/blob/master/LICENSE
  */
-package JDS.structures.graphs.specific;
+package JDS.structures.graphs;
 
 import JDS.structures.graphs.*;
 

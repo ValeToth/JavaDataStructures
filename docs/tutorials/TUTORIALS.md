@@ -9,11 +9,9 @@
 _from [Wikipedia](https://en.wikipedia.org/wiki/Composite_pattern)_
 
 <center>
- 
-<img src="CompositePattern.png" width="60%"  >
-
-the composite pattern UML diagram
-
+<img src="CompositePattern.png" width="60%">
+<br>
+<p>the composite pattern UML diagram</p>
 </center>
  
 

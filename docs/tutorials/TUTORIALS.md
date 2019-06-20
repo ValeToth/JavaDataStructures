@@ -14,6 +14,7 @@
 </center>
  
 
+
 # Structures
 
 ### Graphs
@@ -21,7 +22,8 @@
 ###### from [Wikipedia](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))
 
 
-In this library graphs are based upon the __composite pattern__ and are of the __Directed__ type, meaning the edges (or arches) from node to node are unilateral.
+In this library graphs are based upon the __composite pattern__ and are of the __directed__ type, meaning the edges (or arches) from node to node are unilateral.
+So if you want a connection from node A to node B and vice versa you must use two arches.
 
 #### Example
 Nodes are called GraphNodes, and take to generic parameters:
@@ -50,7 +52,20 @@ nodeA.addGraphNode(nodeB, 10.0);
 nodeB.addGraphNode(nodeA, 10.0);
 ```
 
+<br>
+
 let's now say you want to get a list of every node reachable from _nodeA_
 ```java
 Collection<IGraphNode> nodesReachableFromA = IGraphNode.reachableGraphnodes( nodeA );
+```
+
+or, even better for filtering data, you want a `Stream` of all reachable GraphNodes
+```java
+Stream<IGraphNode> nodeAstream = nodeA.stream();
+```
+
+being `Iterable` you can directly use a foreach loop
+```java
+for ( IGraphNode node : nodeA )
+    System.out.println( nodeA.getContent() );
 ```

@@ -1,4 +1,7 @@
 # JDS: JavaDataStructures
+
+[![](https://jitpack.io/v/JacopoWolf/JavaDataStructures.svg)](https://jitpack.io/#JacopoWolf/JavaDataStructures)
+
 -------
 ## About :page_with_curl:
 This is a simple Java **library for commonly used patterns and data structures** implementing them.<br>

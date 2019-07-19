@@ -3,7 +3,6 @@
  */
 package JDS.structures.graphs;
 
-
 /**
  * implements IArch, rappresents uniateral connection between two nodes.
  * @author Jacopo_Wolf

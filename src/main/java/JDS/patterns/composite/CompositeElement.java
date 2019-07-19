@@ -6,6 +6,9 @@ package JDS.patterns.composite;
 import java.util.*;
 import java.util.stream.*;
 
+
+
+
 /**
  * Base implementation of the composite element
  * @author JacopoWolf

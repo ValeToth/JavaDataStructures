@@ -3,7 +3,7 @@
  */
 package JDS.structures.graphs.paths;
 
-import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.*;
 import java.util.*;
 
 

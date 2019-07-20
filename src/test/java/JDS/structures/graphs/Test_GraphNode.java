@@ -4,6 +4,7 @@
 package JDS.structures.graphs;
 
 import JDS.structures.graphs.paths.*;
+import java.util.*;
 import org.junit.*;
 
 
@@ -66,7 +67,7 @@ public class Test_GraphNode
     }
     
     @Test(timeout = 1000)
-    public void testPathFindingError() throws PathNotFoundException
+    public void testPathFinding() throws PathNotFoundException
     {
         WeightMapPath<Integer> instance = new WeightMapPath<>();
         instance.shortestPath
@@ -88,6 +89,55 @@ public class Test_GraphNode
         );
     }
     
+    // with the current implementation it takes 10 seconds for a total of 32.000 nodes
+    @Test( timeout = 10000 )
+    public void testPathFindingExpansive() 
+    {
+        ArrayList<WeightedGraphNode<String>> graph = new ArrayList<>();
+        WeightedGraphNode<String> node0 = new WeightedGraphNode<>("0");
+        graph.add(node0);
+        
+        for ( int i = 0; i < 1500; i++ )
+        {
+            WeightedGraphNode<String> node = new WeightedGraphNode<>();
+            node.addGraphNode( graph.get( graph.size() - 1) );
+            graph.add( node );
+        }
+        
+        
+        for ( int j = 0; j < 20; j++ )
+        {
+        
+            ArrayList<WeightedGraphNode<String>> branch1 = new ArrayList<>();
+            WeightedGraphNode<String> node_branch1 = new WeightedGraphNode<>("branch"+j);
+            
+            branch1.add(node_branch1);
+
+            for ( int i = 0; i < 1500; i++ )
+            {
+                WeightedGraphNode<String> node = new WeightedGraphNode<>();
+                node.addGraphNode( branch1.get( branch1.size() - 1) );
+                branch1.add( node );
+            }
+            
+            // adds to the last nodes
+            (graph.get(new Random().nextInt( graph.size() )))
+                    .addGraphNode(branch1.get(branch1.size() - 1));
+            
+        }
+        
+        
+        WeightMapPath path = new WeightMapPath();
+        try
+        {
+            path.shortestPath( graph.get( graph.size() - 1), node0, true );
+        }
+        catch( PathNotFoundException e )
+        {
+            Assert.fail();
+        }
+        
+    }
     
     
     public static <A> void printPath ( WeightMapPath<A> path ) 

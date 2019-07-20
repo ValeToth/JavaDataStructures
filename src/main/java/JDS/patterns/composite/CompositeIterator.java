@@ -14,12 +14,7 @@ import java.util.*;
  */
 public class CompositeIterator< E extends IElement > implements Iterator< E >
 {
-    
-    /**
-     * Check if a Composite refers to an already checked Element when reading the structure.
-     * If false might generate a stackOverflow but greately increase performance.
-     */
-    public boolean checkStackOverflow = true;
+
     
     private Iterator<E> iterator;
 
@@ -30,9 +25,7 @@ public class CompositeIterator< E extends IElement > implements Iterator< E >
      */
     public CompositeIterator( IComposite source )
     {
-        LinkedList<E> reachableNodes = new LinkedList<>();
-        IComposite.getAllRecursive( source , reachableNodes, checkStackOverflow);
-        this.iterator = reachableNodes.iterator();
+        this.iterator = IComposite.getAll(source).iterator();
     }
     
     @Override

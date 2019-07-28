@@ -1,7 +1,7 @@
 # JDS: JavaDataStructures
 
-![JitPack](https://img.shields.io/jitpack/v/github/JacopoWolf/JavaDataStructures?color=success&logo=java&style=flat-square)
-![JitPack - Downloads](https://img.shields.io/jitpack/dm/github/JacopoWolf/JavaDataStructures?logo=java&style=flat-square)
+![JitPack](https://img.shields.io/jitpack/v/github/JacopoWolf/JavaDataStructures?color=blue&logo=java&style=flat-square)
+![JitPack - Downloads](https://img.shields.io/jitpack/dm/github/JacopoWolf/JavaDataStructures?style=flat-square)
 
 -------
 ## About :page_with_curl:

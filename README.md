@@ -1,6 +1,6 @@
 # JDS: JavaDataStructures
 
-[![](https://jitpack.io/v/JacopoWolf/JavaDataStructures.svg)](https://jitpack.io/#JacopoWolf/JavaDataStructures)
+![JitPack](https://img.shields.io/jitpack/v/github/JacopoWolf/JavaDataStructures?color=success&logo=java&style=for-the-badge)
 
 -------
 ## About :page_with_curl:

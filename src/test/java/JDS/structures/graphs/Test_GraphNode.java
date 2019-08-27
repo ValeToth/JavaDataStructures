@@ -3,7 +3,9 @@
  */
 package JDS.structures.graphs;
 
+import JDS.patterns.composite.*;
 import JDS.structures.graphs.paths.*;
+import java.util.*;
 import org.junit.*;
 
 
@@ -49,6 +51,21 @@ public class Test_GraphNode
     }
     
     @Test
+    public void testIterator()
+    {
+        GraphNode[] iterationAssertion =  Arrays.copyOfRange(nodes, 1, 6);
+        ArrayList<GraphNode> currentIteration = new ArrayList<>();
+        
+        for( CompositeIterator<GraphNode> it = nodes[0].iterator(); it.hasNext(); )
+        {
+            currentIteration.add( it.next() );
+        }
+        
+        Assert.assertArrayEquals( iterationAssertion, currentIteration.toArray() );
+        
+    }
+    
+    @Test
     public void testConnections()
     {
         Assert.assertArrayEquals
@@ -71,8 +88,8 @@ public class Test_GraphNode
         WeightMapPath<Integer> instance = new WeightMapPath<>();
         instance.shortestPath
         (
-                nodes[6],
-                nodes[0]
+            nodes[6],
+            nodes[0]
         );
         printPath(instance);
         Assert.assertArrayEquals
@@ -94,10 +111,10 @@ public class Test_GraphNode
     public static <A> void printPath ( WeightMapPath<A> path ) 
     {
         for ( IGraphNode node : path )
-            {
-                System.out.print( node.getContent() + "->");
-            }
-            System.out.println("\b\b");
+        {
+            System.out.print( node.getContent() + "->");
+        }
+        System.out.println("\b\b");
     }
     
 }

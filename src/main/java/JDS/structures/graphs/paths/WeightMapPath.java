@@ -3,13 +3,12 @@
  */
 package JDS.structures.graphs.paths;
 
-import JDS.structures.graphs.IArch;
-import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.*;
 import java.util.*;
 import java.util.function.*;
 
 /**
- * rappresents a path between two connected Graphnodes
+ * rappresents a path between two connected Graphnodes, pathfinding is Djikstra's algorithm
  * @author Jacopo_Wolf
  * @param <A> type of data contained in the Arches
  */
@@ -55,6 +54,7 @@ public class WeightMapPath< A > extends LinkedList<IGraphNode<?,A>> implements I
     {
         return this.weightMap;
     }
+    
     
     
     /*

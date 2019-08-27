@@ -1,7 +1,5 @@
 # JDS: JavaDataStructures
 
-![Java](https://img.shields.io/badge/java-orangered?logo=java&style=flat-square)
-<br>
 [![JitPack](https://img.shields.io/jitpack/v/github/JacopoWolf/JavaDataStructures?style=flat-square)](https://jitpack.io/#JacopoWolf/JavaDataStructures)
 ![JitPack - Downloads](https://img.shields.io/jitpack/dm/github/JacopoWolf/JavaDataStructures?style=flat-square)
 

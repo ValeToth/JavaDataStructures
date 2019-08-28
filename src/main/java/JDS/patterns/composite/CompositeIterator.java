@@ -3,6 +3,7 @@
  */
 package JDS.patterns.composite;
 
+//? ottimizzare cheked con un dizionario
 
 import java.util.*;
 
@@ -14,10 +15,11 @@ import java.util.*;
  */
 public class CompositeIterator< E extends IElement > implements Iterator< E >
 {
-
+    // the final list to return
+    private HashSet< IElement > checked;
+    private Queue< IElement > toCheck;
     
-    private Iterator<E> iterator;
-
+    private IElement current;
     
     /**
      * new instance of GraphNodeIterator starting from the specified Node
@@ -25,18 +27,35 @@ public class CompositeIterator< E extends IElement > implements Iterator< E >
      */
     public CompositeIterator( IComposite source )
     {
-        this.iterator = IComposite.getAll(source).iterator();
+        this.checked = new HashSet<>();
+        this.toCheck = new LinkedList<>();
+        
+        this.toCheck.add(source);
+        
+        // processes source element
+        this.next(); 
     }
     
     @Override
     public boolean hasNext()
     {
-        return iterator.hasNext();
+        return !this.toCheck.isEmpty();
     }
 
     @Override
     public E next()
     {
-        return iterator.next();
+
+        current = toCheck.poll();
+        checked.add(current);
+        
+        if ( current instanceof IComposite )
+            ((IComposite)current)
+            .getConnectedElements()
+            .parallelStream()
+            .filter( el -> !checked.contains(el) && !toCheck.contains(el) )
+            .forEach( el -> toCheck.add((IElement)el) );
+        
+        return (E)current;
     }   
 }

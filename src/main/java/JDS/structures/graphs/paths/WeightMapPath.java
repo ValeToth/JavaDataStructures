@@ -96,7 +96,7 @@ public class WeightMapPath< A > extends LinkedList<IGraphNode<?,A>> implements I
     @Override 
     public WeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination ) throws PathNotFoundException
     {
-        //checks if the destination is reachable
+        //checks if the destination is reachable in the first place
         if ( source.parallelStream().noneMatch( e -> e.equals(destination) ) )
             throw new PathNotFoundException(source, destination, "There's no path between source and destination nodes!");
         

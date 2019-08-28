@@ -15,12 +15,12 @@ import org.junit.*;
  */
 public class Test_Paths
 {
-    // with the current implementation it takes 10 seconds for a total of 32.000 nodes
-    @Test( timeout = 10000 )
-    public void testPathFindingExpansive() 
+    ArrayList<WeightedGraphNode<String>> graph = new ArrayList<>();
+    WeightedGraphNode<String> node0 = new WeightedGraphNode<>("0");
+    
+    @Before
+    public void prepareTestPathFindingExpansive()
     {
-        ArrayList<WeightedGraphNode<String>> graph = new ArrayList<>();
-        WeightedGraphNode<String> node0 = new WeightedGraphNode<>("0");
         graph.add(node0);
         
         for ( int i = 0; i < 1500; i++ )
@@ -52,7 +52,12 @@ public class Test_Paths
             
         }
         
-        
+    }
+    
+    // with the current implementation it takes 10 seconds for a total of 32.000 nodes
+    @Test( timeout = 10000 )
+    public void testPathFindingExpansive() 
+    {
         WeightMapPath path = new WeightMapPath();
         try
         {
@@ -62,6 +67,5 @@ public class Test_Paths
         {
             Assert.fail();
         }
-        
     }
 }

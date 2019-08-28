@@ -50,10 +50,10 @@ public class Test_GraphNode
         Assert.assertEquals("Test", instance.getContent() );
     }
     
-    @Test
+    @Test(timeout = 2000)
     public void testIterator()
     {
-        GraphNode[] iterationAssertion =  Arrays.copyOfRange(nodes, 1, 6);
+        GraphNode[] iterationAssertion =  Arrays.copyOfRange(nodes, 1, 7);
         ArrayList<GraphNode> currentIteration = new ArrayList<>();
         
         for( CompositeIterator<GraphNode> it = nodes[0].iterator(); it.hasNext(); )
@@ -61,8 +61,10 @@ public class Test_GraphNode
             currentIteration.add( it.next() );
         }
         
+        currentIteration.sort( (a,b) -> a.content.toString().compareTo(b.content.toString()) );
         Assert.assertArrayEquals( iterationAssertion, currentIteration.toArray() );
         
+        //error: duplicates in the currentiteration list
     }
     
     @Test

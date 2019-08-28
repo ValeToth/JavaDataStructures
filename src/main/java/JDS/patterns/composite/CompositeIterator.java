@@ -3,8 +3,6 @@
  */
 package JDS.patterns.composite;
 
-//? ottimizzare cheked con un dizionario
-
 import java.util.*;
 
 

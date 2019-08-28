@@ -53,9 +53,7 @@ public interface IGraphNode<T,A> extends IComposite<T>
      */
     public static <E extends IGraphNode> Collection<E> reachableGraphnodes ( E root )
     {
-        ArrayList<E> out = new ArrayList<>();
-        IComposite.getAllRecursive( root, out );        
-        return out;
+        return IComposite.getAll( root );
     }
     
 }

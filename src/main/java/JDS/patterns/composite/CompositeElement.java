@@ -29,17 +29,13 @@ public abstract class CompositeElement<T> extends SimpleElement<T> implements IC
     @Override
     public Stream<? extends IElement> parallelStream()
     {
-        ArrayList<? extends IElement> out = new ArrayList<>();
-        IComposite.getAllRecursive(this, out, false);
-        return out.stream();
+        return IComposite.getAll(this).parallelStream();
     }
 
     @Override
     public Stream<? extends IElement> stream()
     {
-        ArrayList<? extends IElement> out = new ArrayList<>();
-        IComposite.getAllRecursive(this, out, false);
-        return out.parallelStream();
+        return IComposite.getAll(this).stream();
     }
     
 }

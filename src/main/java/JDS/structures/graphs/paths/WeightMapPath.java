@@ -3,13 +3,12 @@
  */
 package JDS.structures.graphs.paths;
 
-import JDS.structures.graphs.IArch;
-import JDS.structures.graphs.IGraphNode;
+import JDS.structures.graphs.*;
 import java.util.*;
 import java.util.function.*;
 
 /**
- * rappresents a path between two connected Graphnodes
+ * rappresents a path between two connected Graphnodes, pathfinding is Djikstra's algorithm
  * @author Jacopo_Wolf
  * @param <A> type of data contained in the Arches
  */
@@ -57,6 +56,7 @@ public class WeightMapPath< A > extends LinkedList<IGraphNode<?,A>> implements I
     }
     
     
+    
     /*
         constructors
     */
@@ -96,7 +96,7 @@ public class WeightMapPath< A > extends LinkedList<IGraphNode<?,A>> implements I
     @Override 
     public WeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination ) throws PathNotFoundException
     {
-        //checks if the destination is reachable
+        //checks if the destination is reachable in the first place
         if ( source.parallelStream().noneMatch( e -> e.equals(destination) ) )
             throw new PathNotFoundException(source, destination, "There's no path between source and destination nodes!");
         

@@ -3,8 +3,7 @@
  */
 package JDS.structures.graphs.paths;
 
-import JDS.structures.graphs.IGraphNode;
-import JDS.structures.graphs.paths.IPath;
+import JDS.structures.graphs.*;
 import java.util.*;
 import java.util.function.*;
 
@@ -49,7 +48,8 @@ public interface IWeightMapPath<A> extends IPath<A, IGraphNode<?,A> >
     public IWeightMapPath<A> shortestPath ( IGraphNode<?,A> source, IGraphNode<?,A> destination, boolean stopAtDestination  ) throws PathNotFoundException;
     
     /**
-     * generates weight map of every reachable Graphnode from source and returns it.
+     * generates weight map of every reachable Graphnode from source and returns it,
+     * mantaining a copy for future usages if needed.
      * @param source
      * @return 
      */

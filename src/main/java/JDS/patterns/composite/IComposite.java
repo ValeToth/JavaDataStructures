@@ -52,44 +52,67 @@ public interface IComposite<T> extends IElement<T>, Iterable
     
     
     /**
-     * recursively returns all connected elements of root, checking for reference to already inderted elements.
+     * returns all connected elements of root, checking for reference to already checked elements.
      * @param <A> the content of the elements
-     * @param <O> the IElement type of the out list
+     * @param <Out> the type of the IElement in the out collection
      * @param root the root element
-     * @param out the Collection to wich add the elements
+     * @return the collection of all reachable elements from root.
      */
-    public static <A, O extends IElement<A>> void getAllRecursive( IComposite root, Collection<O> out )
+    public static <A, Out extends IElement<A> > Collection<Out> getAll( IComposite<A> root )
     {   
-        IComposite.getAllRecursive(root, out, true);
+        // the final list to return
+        Collection<Out> out = new ArrayList<>();
+        
+        // variables for the research
+        Queue< IComposite<A> > toCheck = new LinkedList<>();
+        toCheck.add(root);
+        
+        IComposite<A> current;
+        while ( (current = toCheck.poll()) != null )
+        {
+            for ( IElement<A> el : current.getConnectedElements()  )
+            {
+                if ( out.parallelStream().anyMatch( x -> x.equals(el) ) )
+                    continue;
+                    
+                out.add((Out)el);
+                
+                if ( el instanceof IComposite )
+                    toCheck.add((IComposite<A>)el);
+            }
+            
+        }
+        
+        return out;
     }
     
     /**
-     * recursively returns all sub elements of root, checking for reference to already inderted elements only when specified.
+     * recursively returns all sub elements of root, checking for reference to already checked elements only when specified.
      * if checkStackOverflow if false, the algorithm will be faster, but it doesn't guarantee error-free execution.
      * This means if the structure is not well constructed, this might generate a StackOverflowError.
      * @param <A> the content of the elements
      * @param <O> the IElement type of the out list
      * @param root the root element
      * @param out the Collection to wich add the elements
-     * @param checkStackOverflow
+     * @param avoidLoops
      */
     public static <A, O extends IElement<A>> void getAllRecursive
         ( 
                 IComposite<A> root, 
                 Collection<O> out, 
-                boolean checkStackOverflow 
+                boolean avoidLoops 
         ) 
         throws StackOverflowError
     {
         for ( IElement<A> el : root.getConnectedElements() )
         {
             // doesn't check for second condition of the first is true.
-            if ( !checkStackOverflow || !out.contains(el) ) 
+            if ( !avoidLoops || !out.contains(el) ) 
             {
                 out.add((O)el);
             
                 if ( el instanceof IComposite )
-                    IComposite.getAllRecursive( (IComposite<A>)el , out, checkStackOverflow );   
+                    IComposite.getAllRecursive( (IComposite<A>)el , out, avoidLoops );   
             }
         }
     }

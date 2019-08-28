@@ -3,7 +3,6 @@
  */
 package JDS.patterns.composite;
 
-
 import java.util.*;
 
 
@@ -14,15 +13,11 @@ import java.util.*;
  */
 public class CompositeIterator< E extends IElement > implements Iterator< E >
 {
+    // the final list to return
+    private HashSet< IElement > checked;
+    private Queue< IElement > toCheck;
     
-    /**
-     * Check if a Composite refers to an already checked Element when reading the structure.
-     * If false might generate a stackOverflow but greately increase performance.
-     */
-    public boolean checkStackOverflow = true;
-    
-    private Iterator<E> iterator;
-
+    private IElement current;
     
     /**
      * new instance of GraphNodeIterator starting from the specified Node
@@ -30,20 +25,35 @@ public class CompositeIterator< E extends IElement > implements Iterator< E >
      */
     public CompositeIterator( IComposite source )
     {
-        LinkedList<E> reachableNodes = new LinkedList<>();
-        IComposite.getAllRecursive( source , reachableNodes, checkStackOverflow);
-        this.iterator = reachableNodes.iterator();
+        this.checked = new HashSet<>();
+        this.toCheck = new LinkedList<>();
+        
+        this.toCheck.add(source);
+        
+        // processes source element
+        this.next(); 
     }
     
     @Override
     public boolean hasNext()
     {
-        return iterator.hasNext();
+        return !this.toCheck.isEmpty();
     }
 
     @Override
     public E next()
     {
-        return iterator.next();
+
+        current = toCheck.poll();
+        checked.add(current);
+        
+        if ( current instanceof IComposite )
+            ((IComposite)current)
+            .getConnectedElements()
+            .parallelStream()
+            .filter( el -> !checked.contains(el) && !toCheck.contains(el) )
+            .forEach( el -> toCheck.add((IElement)el) );
+        
+        return (E)current;
     }   
 }

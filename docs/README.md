@@ -7,7 +7,7 @@ Our main goal is to create a simple-to-use library for beginner in the data stru
 ## [Download the latest release](https://github.com/JacopoWolf/JavaDataStructures/releases)
 
 
-## [Documentation](javadoc/index.html)
+## [Documentation](apidocs/index.html)
 
 
 ## [Tutorials (in development)](tutorials/TUTORIALS.md)

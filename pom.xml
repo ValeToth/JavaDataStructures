@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com</groupId>
     <artifactId>JavaDataStructures</artifactId>
-    <version>2.0-alpha</version>
+    <version>2.0</version>
     <name>Java Data Structures</name>
     <description>generic data structures in Java</description>
     <packaging>jar</packaging>
